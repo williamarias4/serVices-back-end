@@ -42,5 +42,16 @@ public class User {
     @Getter
     @Setter
     private Role role;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "business_profile_id", referencedColumnName = "id")
+    @Getter
+    @Setter
+    private BusinessProfile business_profile;
     //</editor-fold>
+
+    @OneToOne(mappedBy = "user")
+    private UserRecord record;
+
+
 }
