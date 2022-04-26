@@ -7,8 +7,8 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name = "job_experience")
-public class JobExperience {
+@Table(name = "work_experience")
+public class WorkExperience {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

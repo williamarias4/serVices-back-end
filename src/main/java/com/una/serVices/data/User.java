@@ -53,5 +53,11 @@ public class User {
     @OneToOne(mappedBy = "user")
     private UserRecord record;
 
+    @OneToOne(mappedBy = "publisher")
+    private JobHiredRecord job_hired_record_publisher;
+
+    @OneToOne(mappedBy = "customer")
+    private JobHiredRecord job_hired_record_customer;
+
 
 }

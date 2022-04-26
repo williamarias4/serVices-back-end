@@ -1,16 +1,20 @@
 package com.una.serVices.data;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
-@Table(name = "service")
-public class Service {
+@Table(name = "job")
+public class Job {
 
+    //<editor-fold defaultstate="collapsed" desc="Variable Def">
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -35,8 +39,16 @@ public class Service {
     @Getter
     @Setter
     private BigDecimal price;
+    //</editor-fold>
 
-    @ManyToOne
-    @JoinColumn(name = "business_profile_id")
-    private BusinessProfile business_profile;
+    @ManyToMany(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
+    @JoinTable(name = "profile_job", joinColumns = {@JoinColumn(name = "job_id")},
+            inverseJoinColumns = {@JoinColumn(name = "business_profile_id")})
+    @JsonBackReference
+    @Getter
+    @Setter
+    Set<BusinessProfile> business_profiles = new HashSet<>();
+
+    @OneToOne(mappedBy = "job")
+    private JobHiredRecord jobs_hired_record;
 }

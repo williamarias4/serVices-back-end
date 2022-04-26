@@ -1,6 +1,7 @@
 package com.una.serVices.data;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -24,12 +25,13 @@ public class BusinessProfile {
     @OneToMany(mappedBy = "business_profile", cascade = CascadeType.ALL)
     @Getter
     @Setter
-    private Set<JobExperience> experience;
+    private Set<WorkExperience> experience;
 
-    @OneToMany(mappedBy = "business_profile", cascade = CascadeType.ALL)
+    @ManyToMany(mappedBy = "business_profiles", fetch = FetchType.EAGER)
+    @JsonBackReference
     @Getter
     @Setter
-    private Set<Service> services;
+    private Set<Job> jobs;
 
     @OneToOne(mappedBy = "business_profile", cascade = CascadeType.ALL)
     @Getter
