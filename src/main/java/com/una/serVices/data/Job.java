@@ -33,7 +33,7 @@ public class Job {
     @Column(name = "category")
     @Getter
     @Setter
-    private String Category;
+    private String category;
 
     @Column(name = "price", columnDefinition = "decimal", length = 10, precision = 2)
     @Getter

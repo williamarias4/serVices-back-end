@@ -40,10 +40,10 @@ public class Person {
     @Setter
     private String province;
 
-    @Column(name = "location")
+    @Column(name = "address")
     @Getter
     @Setter
-    private String exact_location;
+    private String address;
 
     @Column(name = "birth_date", columnDefinition = "DATE")
     @Getter

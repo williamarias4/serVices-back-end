@@ -7,18 +7,16 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 @Service
 @Transactional
 @Component
-public class UserService implements IService<User>{
+public class UserService implements IService<User> {
 
     @Autowired
     private Dao dao;
-
 
     @Override
     public Optional<User> get(int id) {
