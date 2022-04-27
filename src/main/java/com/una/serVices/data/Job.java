@@ -39,6 +39,11 @@ public class Job {
     @Getter
     @Setter
     private BigDecimal price;
+
+    @Column(name = "active")
+    @Getter
+    @Setter
+    private boolean active;
     //</editor-fold>
 
     @ManyToMany(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)

@@ -8,7 +8,7 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name = "jobs_hired_record")
+@Table(name = "job_hired_record")
 public class JobHiredRecord {
 
     @Id
@@ -23,6 +23,8 @@ public class JobHiredRecord {
     private Job job;
 
     @Column(name = "hire_date", columnDefinition = "DATE")
+    @Getter
+    @Setter
     private Date hire_date;
 
     @OneToOne(cascade = CascadeType.ALL)
