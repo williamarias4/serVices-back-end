@@ -1,9 +1,6 @@
 package com.una.serVices.dto;
 
-import com.una.serVices.data.BusinessProfile;
-import com.una.serVices.data.Person;
-import com.una.serVices.data.Role;
-import com.una.serVices.data.UserRecord;
+import com.una.serVices.data.*;
 import lombok.Data;
 
 import javax.validation.constraints.NotBlank;
@@ -26,4 +23,9 @@ public class UserDto {
     private BusinessProfile business_profile;
 
     private UserRecord record;
+
+    private JobHiredRecord job_hired_record_publisher;
+
+    private JobHiredRecord job_hired_record_customer;
+
 }

@@ -13,7 +13,7 @@ public class PersonDto {
 
     @NotNull
     @NotEmpty
-    private int id_number;
+    private int id;
     @NotBlank
     private String full_name;
     @NotBlank
@@ -23,7 +23,7 @@ public class PersonDto {
     @NotBlank
     private String province;
     @NotBlank
-    private String exact_location;
+    private String address;
     @NotNull
     private Date birth_date;
 
