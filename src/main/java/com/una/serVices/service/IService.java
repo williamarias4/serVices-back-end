@@ -9,6 +9,8 @@ public interface IService<T> {
 
     List<T> getAll();
 
+    boolean exists(T t);
+
     void save(T t);
 
     void update(T t, String[] params);

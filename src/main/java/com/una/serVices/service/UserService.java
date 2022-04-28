@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @Service
@@ -29,6 +30,17 @@ public class UserService implements IService<User> {
     }
 
     @Override
+    public boolean exists(User user) {
+        List<User> users = dao.getAll();
+        for(User iterator : users){
+            if(Objects.equals(user.getPerson().getId(), iterator.getPerson().getId())){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @Override
     public void save(User user) {
         dao.save(user);
     }
@@ -42,4 +54,6 @@ public class UserService implements IService<User> {
     public void delete(User user) {
         dao.delete(user);
     }
+
+
 }
