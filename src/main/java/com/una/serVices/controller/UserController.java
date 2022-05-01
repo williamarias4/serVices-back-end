@@ -2,6 +2,7 @@ package com.una.serVices.controller;
 
 import com.una.serVices.config.APIRoutes;
 import com.una.serVices.data.User;
+import com.una.serVices.dto.LoginDto;
 import com.una.serVices.dto.UserDto;
 import com.una.serVices.service.ILoginService;
 import com.una.serVices.service.IService;
@@ -16,7 +17,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping(APIRoutes.API.USERS_V1)
-public class UserController {
+public class UserController implements IController<UserDto, User> {
 
     @Autowired
     private ModelMapper modelMapper;
@@ -36,26 +37,37 @@ public class UserController {
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public UserDto save(@Valid @RequestBody UserDto userDto) {
+    public UserDto save(@Valid @RequestBody UserDto userDto) throws Exception {
         User user = convertToEntity(userDto);
-        service.save(user);
-        if(service.exists(user)){
-            return convertToDto(user);
+        return convertToDto((User) service.save(user));
+    }
+
+    @PostMapping(value = APIRoutes.Session.LOG_IN, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public UserDto login(@Valid @RequestBody LoginDto loginDto) throws Exception {
+        User user = convertToEntity(loginDto);
+        if (login.login(user)) {
+            return convertToDto((User) login.getUserDb(user));
         }
         return null;
     }
 
+    public User convertToEntity(LoginDto loginDto) {
+        User user = modelMapper.map(loginDto, User.class);
+        return user;
+    }
 
-
-    private UserDto convertToDto(User user) {
+    @Override
+    public UserDto convertToDto(User user) {
         UserDto userDto = modelMapper.map(user, UserDto.class);
         return userDto;
     }
 
-    private User convertToEntity(UserDto userDto) {
+    @Override
+    public User convertToEntity(UserDto userDto) {
         User user = modelMapper.map(userDto, User.class);
         return user;
     }
 
-
 }
+

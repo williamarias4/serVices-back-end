@@ -1,7 +1,6 @@
 package com.una.serVices.dao;
 
 import com.google.common.base.Preconditions;
-import com.una.serVices.data.Person;
 import com.una.serVices.data.User;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
@@ -10,26 +9,21 @@ import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
-import java.io.Serializable;
 import java.util.List;
-import java.util.Optional;
 
 @Repository
 @Component
-public class UserDao extends HibernateDao implements Dao<User> {
+public class UserDao extends HibernateDao implements Dao<User, String> {
 
 
-    //FALTA IMPLEMENTAR
     @Override
-    public Optional<User> get(int id) {
-        if (id != 0) {
-            Person person = new Person();
-            User user = (User) getCurrentSession().get(User.class, (Serializable) person);
-            //return user;
-            return null;
-        } else
-            return Optional.empty();
+    public User get(String user_name) {
+            /*Person person = new Person();
+            User user = (User) getCurrentSession().get(User.class, (Serializable) person);*/
+        User user = (User) getCurrentSession().get(User.class, user_name);
+        return user;
     }
+
 
     @Override
     public List<User> getAll() {

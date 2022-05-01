@@ -29,7 +29,7 @@ public class Person {
     @Column(name = "cell_phone")
     @Getter
     @Setter
-    private String cell_phone;
+    private int cell_phone;
 
     @Column(name = "province")
     @Getter

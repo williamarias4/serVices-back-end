@@ -24,7 +24,7 @@ public class LoginService implements ILoginService {
         List<User> users = new ArrayList<>();
         users = dao.getAll();
         for (User userAux : users) {
-            if (userAux.getUsername().equals(user.getUsername()) && userAux.getPassword()
+            if (userAux.getUser_name().equals(user.getUser_name()) && userAux.getPassword()
                     .equals(user.getPassword())) {
                 return true;
             }
@@ -38,8 +38,7 @@ public class LoginService implements ILoginService {
         List<User> users = new ArrayList<>();
         users = dao.getAll();
         for (User userAux : users) {
-            if (userAux.getUsername().equals(user.getUsername()) && userAux.getPassword()
-                    .equals(user.getPassword())) {
+            if (userAux.getUser_name().equals(user.getUser_name())) {
                 return userAux;
             }
 

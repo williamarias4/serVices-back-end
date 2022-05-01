@@ -12,6 +12,7 @@ import java.util.Set;
 @Data
 public class JobDto {
 
+    private long id;
     @NotBlank
     private String title;
     @NotBlank

@@ -10,10 +10,10 @@ import javax.validation.constraints.NotNull;
 public class UserDto {
 
     @NotBlank
-    private String username;
+    private String user_name;
     @NotBlank
     private String password;
-    @NotBlank
+
     private String reset_password_token;
     @NotNull
     private Person person;

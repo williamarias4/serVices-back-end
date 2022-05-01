@@ -14,14 +14,14 @@ import java.util.Optional;
 @Service
 @Transactional
 @Component
-public class UserService implements IService<User> {
+public class UserService implements IService<User, String> {
 
     @Autowired
     private Dao dao;
 
     @Override
-    public Optional<User> get(int id) {
-        return dao.get(id);
+    public User get(String user_name) {
+        return (User) dao.get(user_name);
     }
 
     @Override
@@ -32,8 +32,8 @@ public class UserService implements IService<User> {
     @Override
     public boolean exists(User user) {
         List<User> users = dao.getAll();
-        for(User iterator : users){
-            if(Objects.equals(user.getPerson().getId(), iterator.getPerson().getId())){
+        for (User iterator : users) {
+            if (Objects.equals(user.getUser_name(), iterator.getUser_name())) {
                 return true;
             }
         }
@@ -41,8 +41,12 @@ public class UserService implements IService<User> {
     }
 
     @Override
-    public void save(User user) {
+    public User save(User user) {
+        if (exists(user)) {
+            return new User();
+        }
         dao.save(user);
+        return user;
     }
 
     @Override

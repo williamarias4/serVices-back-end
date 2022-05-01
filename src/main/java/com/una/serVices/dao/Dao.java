@@ -3,9 +3,9 @@ package com.una.serVices.dao;
 import java.util.List;
 import java.util.Optional;
 
-public interface Dao<T> {
+public interface Dao<T,A> {
 
-    Optional<T> get(int id);
+    T get(A id);
 
     List<T> getAll();
 

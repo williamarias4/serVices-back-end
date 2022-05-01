@@ -16,10 +16,10 @@ public class User {
     @Column(name = "id")
     private long id;
 
-    @Column(name = "username")
+    @Column(name = "user_name")
     @Getter
     @Setter
-    private String username;
+    private String user_name;
 
     @Column(name = "password")
     @Getter
