@@ -1,6 +1,7 @@
 package com.una.serVices.data;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -45,6 +46,7 @@ public class User {
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "business_profile_id", referencedColumnName = "id")
+    @JsonBackReference
     @Getter
     @Setter
     private BusinessProfile business_profile;

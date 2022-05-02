@@ -2,6 +2,7 @@ package com.una.serVices.dao;
 
 import com.google.common.base.Preconditions;
 import com.una.serVices.data.User;
+import org.hibernate.Hibernate;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
@@ -32,6 +33,7 @@ public class UserDao extends HibernateDao implements Dao<User, String> {
         Root<User> rootEntry = cq.from(User.class);
         CriteriaQuery<User> all = cq.select(rootEntry);
         TypedQuery<User> allQuery = getCurrentSession().createQuery(all);
+        Hibernate.initialize(allQuery.getResultList());
         return allQuery.getResultList();
     }
 

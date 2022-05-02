@@ -2,6 +2,8 @@ package com.una.serVices.data;
 
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -22,7 +24,8 @@ public class BusinessProfile {
     @Setter
     private String about;
 
-    @OneToMany(mappedBy = "business_profile", cascade = CascadeType.ALL)
+
+    @OneToMany(mappedBy = "business_profile", fetch = FetchType.EAGER)
     @Getter
     @Setter
     private Set<WorkExperience> experience;
@@ -34,6 +37,7 @@ public class BusinessProfile {
     private Set<Job> jobs;
 
     @OneToOne(mappedBy = "business_profile", cascade = CascadeType.ALL)
+    @JsonIgnore
     @Getter
     @Setter
     private User user;
