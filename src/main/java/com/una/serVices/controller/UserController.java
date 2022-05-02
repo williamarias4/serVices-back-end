@@ -8,6 +8,7 @@ import com.una.serVices.service.ILoginService;
 import com.una.serVices.service.IService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
@@ -27,6 +28,12 @@ public class UserController implements IController<UserDto, User> {
 
     @Autowired
     private ILoginService login;
+
+
+    @GetMapping(APIRoutes.Session.GET_BY_USER_NAME)
+    public UserDto getByUsername(@PathVariable String user_name) {
+        return convertToDto((User) service.get(user_name));
+    }
 
     @GetMapping(APIRoutes.RestAPI.GET_ALL)
     public List<UserDto> getAllUsers() {

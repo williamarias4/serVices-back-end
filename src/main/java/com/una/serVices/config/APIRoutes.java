@@ -6,6 +6,8 @@ public class APIRoutes {
 
         public static final String LOG_IN = "/login";
         public static final String LOG_OUT = "/logout";
+        public static final String GET_BY_USER_NAME = "/{user_name}";
+
     }
 
     public class RestAPI {

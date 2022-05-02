@@ -6,6 +6,7 @@ import org.hibernate.Hibernate;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
+import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -19,10 +20,17 @@ public class UserDao extends HibernateDao implements Dao<User, String> {
 
     @Override
     public User get(String user_name) {
-            /*Person person = new Person();
-            User user = (User) getCurrentSession().get(User.class, (Serializable) person);*/
-        User user = (User) getCurrentSession().get(User.class, user_name);
-        return user;
+        CriteriaBuilder cb = getCurrentSession().getCriteriaBuilder();
+        CriteriaQuery<User> cr = cb.createQuery(User.class);
+        Root<User> root = cr.from(User.class);
+        cr.select(root).where(cb.equal(root.get("user_name"), user_name));
+
+        TypedQuery<User> typed = getCurrentSession().createQuery(cr);
+        try {
+            return typed.getSingleResult();
+        } catch (final NoResultException nre) {
+            return null;
+        }
     }
 
 
