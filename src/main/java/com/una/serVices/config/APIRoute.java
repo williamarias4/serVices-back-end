@@ -1,6 +1,6 @@
 package com.una.serVices.config;
 
-public class APIRoutes {
+public class APIRoute {
 
     public class Session {
 

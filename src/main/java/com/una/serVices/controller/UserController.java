@@ -1,6 +1,7 @@
 package com.una.serVices.controller;
 
-import com.una.serVices.config.APIRoutes;
+import com.una.serVices.config.APIRoute;
+import com.una.serVices.config.ComponentConfig;
 import com.una.serVices.data.User;
 import com.una.serVices.dto.LoginDto;
 import com.una.serVices.dto.UserDto;
@@ -17,27 +18,31 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping(APIRoutes.API.USERS_V1)
+@RequestMapping(APIRoute.API.USERS_V1)
 public class UserController implements IController<UserDto, User> {
 
     @Autowired
     private ModelMapper modelMapper;
 
+    @Qualifier(ComponentConfig.Service.USER)
     @Autowired
     private IService service;
+
+    @Qualifier(ComponentConfig.Service.BUSINESS_PROFILE)
+    @Autowired
+    private IService service2;
 
     @Autowired
     private ILoginService login;
 
 
-    @GetMapping(APIRoutes.Session.GET_BY_USER_NAME)
+    @GetMapping(APIRoute.Session.GET_BY_USER_NAME)
     public UserDto getByUsername(@PathVariable String user_name) {
         return convertToDto((User) service.get(user_name));
     }
 
-    @GetMapping(APIRoutes.RestAPI.GET_ALL)
+    @GetMapping(APIRoute.RestAPI.GET_ALL)
     public List<UserDto> getAllUsers() {
-
         return (List<UserDto>) service.getAll().stream().map(user -> modelMapper
                 .map(user, UserDto.class)).collect(Collectors.toList());
     }
@@ -49,7 +54,7 @@ public class UserController implements IController<UserDto, User> {
         return convertToDto((User) service.save(user));
     }
 
-    @PostMapping(value = APIRoutes.Session.LOG_IN, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = APIRoute.Session.LOG_IN, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public UserDto login(@Valid @RequestBody LoginDto loginDto) throws Exception {
         User user = convertToEntity(loginDto);
