@@ -10,9 +10,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 @Service
 @Transactional
@@ -36,9 +34,8 @@ public class BusinessProfileService implements IService<BusinessProfile, Long> {
     @Override
     public boolean exists(BusinessProfile businessProfile) {
         List<User> users = dao.getAll();
-        List<BusinessProfile> businessProfiles = new ArrayList<>();
-        for(User userAux : users){
-            if(userAux.getBusiness_profile().equals(businessProfiles)){
+        for (User userAux : users) {
+            if (userAux.getUser_name().equals(businessProfile.getUser().getUser_name()) && userAux.getBusiness_profile() != null) {
                 return true;
             }
 
@@ -48,13 +45,20 @@ public class BusinessProfileService implements IService<BusinessProfile, Long> {
 
     @Override
     public BusinessProfile save(BusinessProfile businessProfile) {
-        User user = (User) dao.get(businessProfile.getUser().getUser_name());
-        user.getBusiness_profile().setAbout(businessProfile.getAbout());
-        user.getBusiness_profile().setExperience(businessProfile.getExperience());
-        user.getBusiness_profile().setJobs(businessProfile.getJobs());
-        dao.update(user);
-        if(exists(businessProfile)){
-            return businessProfile;
+        if (exists(businessProfile)) {
+            return null;
+        }
+        User userAux = (User) dao.get(businessProfile.getUser().getUser_name());
+        BusinessProfile businessProfileAux = new BusinessProfile();
+        businessProfileAux.setAbout(businessProfile.getAbout());
+        businessProfileAux.setExperience(businessProfile.getExperience());
+        businessProfileAux.setJobs(businessProfile.getJobs());
+        businessProfileAux.setUser(userAux);
+        userAux.setBusiness_profile(businessProfileAux);
+        dao.update(userAux);
+        if (exists(businessProfile)) {
+            User user = (User) dao.get(businessProfile.getUser().getUser_name());
+            return user.getBusiness_profile();
         }
         return null;
 

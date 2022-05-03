@@ -23,9 +23,8 @@ public class UserService implements IService<User, String> {
 
     @Override
     public User get(String user_name) {
+        User user = (User) dao.get(user_name);
         return (User) dao.get(user_name);
-
-
     }
 
     @Override
@@ -47,7 +46,7 @@ public class UserService implements IService<User, String> {
     @Override
     public User save(User user) {
         if (exists(user)) {
-            return new User();
+            return null;
         }
         dao.save(user);
         return user;

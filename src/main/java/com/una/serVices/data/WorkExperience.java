@@ -1,8 +1,6 @@
 package com.una.serVices.data;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -45,7 +43,9 @@ public class WorkExperience {
 
     @ManyToOne
     @JsonBackReference
-    @JoinColumn(name = "business_profile_id")
+    @JoinColumn(name = "business_profile_id", referencedColumnName = "id")
+    @Getter
+    @Setter
     private BusinessProfile business_profile;
 
 }

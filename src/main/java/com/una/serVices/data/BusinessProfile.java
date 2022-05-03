@@ -24,7 +24,6 @@ public class BusinessProfile {
     @Setter
     private String about;
 
-
     @OneToMany(mappedBy = "business_profile", fetch = FetchType.EAGER)
     @Getter
     @Setter
@@ -37,7 +36,7 @@ public class BusinessProfile {
     private Set<Job> jobs;
 
     @OneToOne(mappedBy = "business_profile", cascade = CascadeType.ALL)
-    @JsonIgnore
+    @JsonManagedReference
     @Getter
     @Setter
     private User user;
