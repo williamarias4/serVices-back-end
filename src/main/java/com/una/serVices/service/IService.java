@@ -1,5 +1,8 @@
 package com.una.serVices.service;
 
+import com.una.serVices.data.BusinessProfile;
+import com.una.serVices.data.User;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -13,7 +16,8 @@ public interface IService<T,A> {
 
     T save(T t) throws Exception;
 
-    void update(T t, String[] params);
+    void update(T t);
+
 
     void delete(T t);
 

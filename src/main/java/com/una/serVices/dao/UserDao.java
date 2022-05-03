@@ -53,7 +53,7 @@ public class UserDao extends HibernateDao implements Dao<User, String> {
     }
 
     @Override
-    public void update(User user, String[] params) {
+    public void update(User user) {
         Preconditions.checkNotNull(user);
         getCurrentSession().merge(user);
     }

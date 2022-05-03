@@ -64,21 +64,19 @@ public class UserController implements IController<UserDto, User> {
         return null;
     }
 
+
     public User convertToEntity(LoginDto loginDto) {
-        User user = modelMapper.map(loginDto, User.class);
-        return user;
+        return modelMapper.map(loginDto, User.class);
     }
 
     @Override
     public UserDto convertToDto(User user) {
-        UserDto userDto = modelMapper.map(user, UserDto.class);
-        return userDto;
+        return modelMapper.map(user, UserDto.class);
     }
 
     @Override
     public User convertToEntity(UserDto userDto) {
-        User user = modelMapper.map(userDto, User.class);
-        return user;
+        return modelMapper.map(userDto, User.class);
     }
 
 }
