@@ -22,5 +22,15 @@ public class ComponentConfig {
         public static final String USER = "UserService";
         public static final String BUSINESS_PROFILE = "BusinessProfileService";
         public static final String WORK_EXPERIENCE = "WorkExperienceService";
+
+        public static final String PERSON = "PersonService";
+
+        public static final String ROLE = "RoleService";
+
+        public static final String USER_RECORD = "UserRecordService";
+
+        public static final String JOB_HIRED_RECORD= "JobHiredRecordService";
+
+
     }
 }
