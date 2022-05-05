@@ -5,6 +5,15 @@ public class ComponentConfig {
     public class DAO {
 
         public static final String USER = "UserDAO";
+        public static final String BUSINESS_PROFILE = "BusinessProfileDao";
+        public static final String ROLE = "RoleDao";
+        public static final String WORK_EXPERIENCE = "WorkExperienceDao";
+
+        public static final String JOB = "JobDao";
+        public static final String PERSON = "PersonDao";
+        public static final String USER_RECORD = "UserRecordDao";
+
+        public static final String JOB_HIRED_RECORD= "JobHiredRecordDao";
 
     }
 
