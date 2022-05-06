@@ -3,6 +3,7 @@ package com.una.serVices.service;
 import com.una.serVices.config.ComponentConfig;
 import com.una.serVices.dao.Dao;
 import com.una.serVices.data.BusinessProfile;
+import com.una.serVices.data.JobHiredRecord;
 import com.una.serVices.data.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -23,12 +24,13 @@ public class BusinessProfileService implements IService<BusinessProfile, Long> {
 
     @Override
     public BusinessProfile get(Long id) {
-        return null;
+        BusinessProfile businessProfile = (BusinessProfile) dao.get(id);
+        return (BusinessProfile) dao.get(id);
     }
 
     @Override
     public List<BusinessProfile> getAll() {
-        return null;
+        return dao.getAll();
     }
 
     @Override
@@ -55,7 +57,7 @@ public class BusinessProfileService implements IService<BusinessProfile, Long> {
         businessProfileAux.setJobs(businessProfile.getJobs());
         businessProfileAux.setUser(userAux);
         userAux.setBusiness_profile(businessProfileAux);
-        dao.update(userAux);
+        dao.save(userAux);
         if (exists(businessProfile)) {
             User user = (User) dao.get(businessProfile.getUser().getUser_name());
             return user.getBusiness_profile();
