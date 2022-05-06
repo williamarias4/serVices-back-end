@@ -47,6 +47,7 @@ public class WorkExperienceService implements IService<WorkExperience, Long> {
         workExperienceAux.setDescription(workExperience.getDescription());
         workExperienceAux.setStart_date(workExperience.getStart_date());
         workExperienceAux.setEnd_date(workExperience.getEnd_date());
+        workExperienceAux.setBusiness_profile(user.getBusiness_profile());
         user.getBusiness_profile().getExperience().add(workExperienceAux);
         dao.update(user);
         return workExperience;
