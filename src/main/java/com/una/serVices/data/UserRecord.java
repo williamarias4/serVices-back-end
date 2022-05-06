@@ -15,8 +15,6 @@ public class UserRecord {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    @Getter
-    @Setter
     private long id;
 
     @OneToOne(cascade = CascadeType.ALL)
@@ -29,7 +27,6 @@ public class UserRecord {
     @Getter
     @Setter
     private Set<JobHiredRecord> jobs_hired;
-
 
 
 }

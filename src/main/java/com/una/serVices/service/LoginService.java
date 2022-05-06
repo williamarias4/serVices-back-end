@@ -1,8 +1,10 @@
 package com.una.serVices.service;
 
+import com.una.serVices.config.ComponentConfig;
 import com.una.serVices.dao.Dao;
 import com.una.serVices.data.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +17,7 @@ import java.util.List;
 @Component
 public class LoginService implements ILoginService {
 
+    @Qualifier(ComponentConfig.DAO.USER)
     @Autowired
     private Dao dao;
 

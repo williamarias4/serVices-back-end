@@ -57,7 +57,7 @@ public class BusinessProfileService implements IService<BusinessProfile, Long> {
         businessProfileAux.setJobs(businessProfile.getJobs());
         businessProfileAux.setUser(userAux);
         userAux.setBusiness_profile(businessProfileAux);
-        dao.save(userAux);
+        dao.update(userAux);
         if (exists(businessProfile)) {
             User user = (User) dao.get(businessProfile.getUser().getUser_name());
             return user.getBusiness_profile();

@@ -5,15 +5,10 @@ public class ComponentConfig {
     public class DAO {
 
         public static final String USER = "UserDAO";
-        public static final String BUSINESS_PROFILE = "BusinessProfileDao";
-        public static final String ROLE = "RoleDao";
-        public static final String WORK_EXPERIENCE = "WorkExperienceDao";
-
         public static final String JOB = "JobDao";
         public static final String PERSON = "PersonDao";
         public static final String USER_RECORD = "UserRecordDao";
-
-        public static final String JOB_HIRED_RECORD= "JobHiredRecordDao";
+        public static final String JOB_HIRED_RECORD = "JobHiredRecordDao";
 
     }
 
@@ -22,14 +17,9 @@ public class ComponentConfig {
         public static final String USER = "UserService";
         public static final String BUSINESS_PROFILE = "BusinessProfileService";
         public static final String WORK_EXPERIENCE = "WorkExperienceService";
-
         public static final String PERSON = "PersonService";
-
-        public static final String ROLE = "RoleService";
-
         public static final String USER_RECORD = "UserRecordService";
-
-        public static final String JOB_HIRED_RECORD= "JobHiredRecordService";
+        public static final String JOB_HIRED_RECORD = "JobHiredRecordService";
 
 
     }

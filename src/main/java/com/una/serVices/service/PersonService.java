@@ -34,12 +34,7 @@ public class PersonService implements IService<Person, Long> {
 
     @Override
     public boolean exists(Person person) {
-        List<Person> persons = dao.getAll();
-        for (Person iterator : persons) {
-            if (Objects.equals(person.getId(), iterator.getId())) {
-                return true;
-            }
-        }
+
         return false;
     }
 

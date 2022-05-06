@@ -34,12 +34,6 @@ public class JobHiredRecordService implements IService<JobHiredRecord, Long> {
 
     @Override
     public boolean exists(JobHiredRecord jobH) {
-        List<JobHiredRecord> jobHs = dao.getAll();
-        for (JobHiredRecord iterator : jobHs) {
-            if (Objects.equals(jobH.getId(), iterator.getId())) {
-                return true;
-            }
-        }
         return false;
     }
 

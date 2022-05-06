@@ -2,8 +2,6 @@ package com.una.serVices.service;
 
 import com.una.serVices.config.ComponentConfig;
 import com.una.serVices.dao.Dao;
-import com.una.serVices.data.BusinessProfile;
-import com.una.serVices.data.JobHiredRecord;
 import com.una.serVices.data.User;
 import com.una.serVices.data.WorkExperience;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,8 +11,6 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
-import java.util.Objects;
-import java.util.Set;
 
 @Service
 @Transactional
@@ -27,23 +23,16 @@ public class WorkExperienceService implements IService<WorkExperience, Long> {
 
     @Override
     public WorkExperience get(Long id) {
-        WorkExperience workExperience = (WorkExperience) dao.get(id);
-        return (WorkExperience) dao.get(id);
+        return null;
     }
 
     @Override
     public List<WorkExperience> getAll() {
-      return dao.getAll();
+        return dao.getAll();
     }
 
     @Override
     public boolean exists(WorkExperience workExperience) {
-        List<WorkExperience> workExperiences = dao.getAll();
-        for (WorkExperience iterator : workExperiences) {
-            if (Objects.equals(workExperience.getId(), iterator.getId())) {
-                return true;
-            }
-        }
         return false;
     }
 
@@ -59,24 +48,21 @@ public class WorkExperienceService implements IService<WorkExperience, Long> {
         workExperienceAux.setBusiness_profile(user.getBusiness_profile());
         user.getBusiness_profile().getExperience().add(workExperienceAux);
         dao.update(user);
-        /*
-
         if (exists(workExperience)) {
             return null;
         }
         dao.save(workExperience);
         return workExperience;
-        * */
-        return workExperience;
+
     }
 
     @Override
     public void update(WorkExperience workExperience) {
-      dao.update(workExperience);
+        dao.update(workExperience);
     }
 
     @Override
     public void delete(WorkExperience workExperience) {
-     dao.delete(workExperience);
+        dao.delete(workExperience);
     }
 }

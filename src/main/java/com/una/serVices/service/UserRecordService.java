@@ -34,12 +34,7 @@ public class UserRecordService implements IService<UserRecord, Long> {
 
     @Override
     public boolean exists(UserRecord userR) {
-        List<UserRecord> userRs = dao.getAll();
-        for (UserRecord iterator : userRs) {
-            if (Objects.equals(userR.getId(), iterator.getId())) {
-                return true;
-            }
-        }
+
         return false;
     }
 
