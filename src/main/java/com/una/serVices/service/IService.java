@@ -14,10 +14,9 @@ public interface IService<T,A> {
 
     boolean exists(T t);
 
-    T save(T t) throws Exception;
+    T save(T t);
 
     void update(T t);
-
 
     void delete(T t);
 

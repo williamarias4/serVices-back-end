@@ -3,7 +3,6 @@ package com.una.serVices.service;
 import com.una.serVices.config.ComponentConfig;
 import com.una.serVices.dao.Dao;
 import com.una.serVices.data.BusinessProfile;
-import com.una.serVices.data.JobHiredRecord;
 import com.una.serVices.data.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -16,22 +15,11 @@ import java.util.List;
 @Service
 @Transactional
 @Component(value = ComponentConfig.Service.BUSINESS_PROFILE)
-public class BusinessProfileService implements IService<BusinessProfile, Long> {
+public class BusinessProfileService implements ISaveService<BusinessProfile> {
 
     @Qualifier(ComponentConfig.DAO.USER)
     @Autowired
     private Dao dao;
-
-    @Override
-    public BusinessProfile get(Long id) {
-        BusinessProfile businessProfile = (BusinessProfile) dao.get(id);
-        return (BusinessProfile) dao.get(id);
-    }
-
-    @Override
-    public List<BusinessProfile> getAll() {
-        return dao.getAll();
-    }
 
     @Override
     public boolean exists(BusinessProfile businessProfile) {
@@ -48,7 +36,7 @@ public class BusinessProfileService implements IService<BusinessProfile, Long> {
     @Override
     public BusinessProfile save(BusinessProfile businessProfile) {
         if (exists(businessProfile)) {
-            return null;
+            throw new RuntimeException("Business Profile already exists");
         }
         User userAux = (User) dao.get(businessProfile.getUser().getUser_name());
         BusinessProfile businessProfileAux = new BusinessProfile();
@@ -75,9 +63,4 @@ public class BusinessProfileService implements IService<BusinessProfile, Long> {
         dao.update(user);
     }
 
-
-    @Override
-    public void delete(BusinessProfile businessProfile) {
-
-    }
 }

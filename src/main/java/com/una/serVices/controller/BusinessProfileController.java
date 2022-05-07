@@ -4,6 +4,7 @@ import com.una.serVices.config.APIRoute;
 import com.una.serVices.config.ComponentConfig;
 import com.una.serVices.data.BusinessProfile;
 import com.una.serVices.dto.BusinessProfileDto;
+import com.una.serVices.service.ISaveService;
 import com.una.serVices.service.IService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,14 +30,17 @@ public class BusinessProfileController implements IController<BusinessProfileDto
 
     @Qualifier(ComponentConfig.Service.BUSINESS_PROFILE)
     @Autowired
-    private IService service2;
+    private ISaveService service2;
 
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public BusinessProfileDto save(@Valid @RequestBody BusinessProfileDto businessProfileDto) throws Exception {
+    public BusinessProfileDto save(@Valid @RequestBody BusinessProfileDto businessProfileDto){
         BusinessProfile businessProfile = convertToEntity(businessProfileDto);
         return convertToDto((BusinessProfile) service2.save(businessProfile));
     }
+
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+
 
 
     @Override

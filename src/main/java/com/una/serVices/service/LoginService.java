@@ -23,17 +23,17 @@ public class LoginService implements ILoginService {
 
 
     @Override
-    public boolean login(User user) {
+    public User login(User user) {
         List<User> users = new ArrayList<>();
         users = dao.getAll();
         for (User userAux : users) {
             if (userAux.getUser_name().equals(user.getUser_name()) && userAux.getPassword()
                     .equals(user.getPassword())) {
-                return true;
+                return userAux;
             }
 
         }
-        return false;
+        return null;
     }
 
     @Override

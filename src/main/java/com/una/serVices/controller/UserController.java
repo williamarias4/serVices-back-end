@@ -49,19 +49,16 @@ public class UserController implements IController<UserDto, User> {
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public UserDto save(@Valid @RequestBody UserDto userDto) throws Exception {
+    public UserDto save(@Valid @RequestBody UserDto userDto) {
         User user = convertToEntity(userDto);
         return convertToDto((User) service.save(user));
     }
 
     @PostMapping(value = APIRoute.Session.LOG_IN, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public UserDto login(@Valid @RequestBody LoginDto loginDto) throws Exception {
+    public UserDto login(@Valid @RequestBody LoginDto loginDto) {
         User user = convertToEntity(loginDto);
-        if (login.login(user)) {
-            return convertToDto((User) login.getUserDb(user));
-        }
-        return null;
+        return convertToDto(login.login(user));
     }
 
 

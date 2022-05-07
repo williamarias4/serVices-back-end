@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Set;
 
 @Service
 @Transactional
@@ -37,7 +38,7 @@ public class WorkExperienceService implements IService<WorkExperience, Long> {
     }
 
     @Override
-    public WorkExperience save(WorkExperience workExperience) throws Exception {
+    public WorkExperience save(WorkExperience workExperience) {
         User user = (User) dao.get(workExperience.getBusiness_profile().getUser().getUser_name());
         WorkExperience workExperienceAux = new WorkExperience();
         workExperienceAux.setTitle(workExperience.getTitle());
