@@ -14,6 +14,7 @@ public class WorkExperience {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
+    @Getter
     private long id;
 
     @Column(name = "title")

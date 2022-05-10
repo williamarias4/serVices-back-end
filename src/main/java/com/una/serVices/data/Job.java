@@ -56,4 +56,10 @@ public class Job {
 
     @OneToOne(mappedBy = "job")
     private JobHiredRecord jobs_hired_record;
+
+    @ManyToOne
+    @JoinColumn(name = "publisher_id", referencedColumnName = "id")
+    @Getter
+    @Setter
+    private User publisher;
 }

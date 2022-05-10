@@ -45,9 +45,9 @@ public class PersonDao extends HibernateDao implements Dao<Person, Long> {
     }
 
     @Override
-    public void save(Person person) {
+    public Person save(Person person) {
         Preconditions.checkNotNull(person);
-        getCurrentSession().save(person);
+        return (Person )getCurrentSession().save(person);
     }
 
     @Override

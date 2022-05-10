@@ -13,7 +13,7 @@ public class PersonDto {
 
     @NotNull
     @NotEmpty
-    private int id;
+    private int id_number;
     @NotBlank
     private String full_name;
     @NotBlank

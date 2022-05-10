@@ -48,8 +48,7 @@ public class UserService implements IService<User, String> {
         if (exists(user)) {
             throw new RuntimeException("User already exists");
         }
-        dao.save(user);
-        return user;
+        return (User) dao.save(user);
     }
 
     @Override

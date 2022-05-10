@@ -47,9 +47,10 @@ public class UserDao extends HibernateDao implements Dao<User, String> {
     }
 
     @Override
-    public void save(User user) {
+    public User save(User user) {
         Preconditions.checkNotNull(user);
         getCurrentSession().save(user);
+        return user;
     }
 
     @Override

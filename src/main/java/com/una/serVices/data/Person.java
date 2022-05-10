@@ -11,8 +11,8 @@ import java.util.Date;
 public class Person {
 
     @Id
-    @Column(name = "id")
-    private long id;
+    @Column(name = "id_number")
+    private long id_number;
 
     @Column(name = "full_name")
     @Getter

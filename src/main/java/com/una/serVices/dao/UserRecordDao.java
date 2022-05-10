@@ -45,15 +45,15 @@ public class UserRecordDao extends HibernateDao implements Dao<UserRecord, Long>
     }
 
     @Override
-    public void save(UserRecord userR) {
+    public UserRecord save(UserRecord userR) {
         Preconditions.checkNotNull(userR);
-        getCurrentSession().save(userR);
+        return (UserRecord) getCurrentSession().save(userR);
     }
 
     @Override
     public void update(UserRecord userR) {
         Preconditions.checkNotNull(userR);
-        getCurrentSession().update(userR);
+        getCurrentSession().merge(userR);
     }
 
     @Override

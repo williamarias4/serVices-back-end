@@ -49,10 +49,7 @@ public class WorkExperienceService implements IService<WorkExperience, Long> {
         workExperienceAux.setBusiness_profile(user.getBusiness_profile());
         user.getBusiness_profile().getExperience().add(workExperienceAux);
         dao.update(user);
-        if (exists(workExperience)) {
-            return null;
-        }
-        dao.save(workExperience);
+
         return workExperience;
 
     }

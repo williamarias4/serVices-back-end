@@ -2,10 +2,12 @@ package com.una.serVices.data;
 
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "user")
@@ -33,7 +35,7 @@ public class User {
     private String reset_password_token;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "person_id", referencedColumnName = "id")
+    @JoinColumn(name = "person_id", referencedColumnName = "id_number")
     @Getter
     @Setter
     private Person person;
@@ -60,6 +62,9 @@ public class User {
 
     @OneToOne(mappedBy = "customer")
     private JobHiredRecord job_hired_record_customer;
+
+    @OneToMany(mappedBy = "publisher", fetch = FetchType.EAGER)
+    private Set<Job> jobs_published;
 
 
 }

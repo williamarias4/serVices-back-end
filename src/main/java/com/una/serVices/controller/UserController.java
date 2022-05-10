@@ -28,10 +28,6 @@ public class UserController implements IController<UserDto, User> {
     @Autowired
     private IService service;
 
-    @Qualifier(ComponentConfig.Service.BUSINESS_PROFILE)
-    @Autowired
-    private IService service2;
-
     @Autowired
     private ILoginService login;
 

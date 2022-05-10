@@ -4,8 +4,8 @@ import com.una.serVices.data.User;
 
 public interface ILoginService {
 
-    public User login(User user);
+    User login(User user);
 
-    public User getUserDb(User user);
+    User getUserDb(User user);
 
 }

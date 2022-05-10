@@ -2,6 +2,7 @@ package com.una.serVices.dto;
 
 import com.una.serVices.data.BusinessProfile;
 import com.una.serVices.data.JobHiredRecord;
+import com.una.serVices.data.User;
 import lombok.Data;
 
 import javax.validation.constraints.NotBlank;
@@ -27,4 +28,7 @@ public class JobDto {
     Set<BusinessProfile> business_profile;
 
     private JobHiredRecord jobs_hired_record;
+
+    @NotNull
+    private User publisher;
 }

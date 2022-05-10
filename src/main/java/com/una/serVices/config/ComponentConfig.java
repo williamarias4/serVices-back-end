@@ -20,7 +20,7 @@ public class ComponentConfig {
         public static final String PERSON = "PersonService";
         public static final String USER_RECORD = "UserRecordService";
         public static final String JOB_HIRED_RECORD = "JobHiredRecordService";
-
+        public static final String JOB = "JobService";
 
     }
 }
