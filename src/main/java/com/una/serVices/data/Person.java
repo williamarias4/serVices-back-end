@@ -12,6 +12,8 @@ public class Person {
 
     @Id
     @Column(name = "id_number")
+    @Getter
+    @Setter
     private long id_number;
 
     @Column(name = "full_name")
