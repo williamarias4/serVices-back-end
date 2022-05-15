@@ -2,6 +2,8 @@ package com.una.serVices.service;
 
 import com.una.serVices.config.ComponentConfig;
 import com.una.serVices.dao.Dao;
+import com.una.serVices.dao.GetDao;
+import com.una.serVices.data.Role;
 import com.una.serVices.data.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -20,6 +22,10 @@ public class UserService implements IService<User, String> {
     @Qualifier(ComponentConfig.DAO.USER)
     @Autowired
     private Dao dao;
+
+    @Qualifier(ComponentConfig.DAO.ROLE)
+    @Autowired
+    private GetDao getDao;
 
     @Override
     public User get(String user_name) {
@@ -48,7 +54,15 @@ public class UserService implements IService<User, String> {
         if (exists(user)) {
             throw new RuntimeException("User already exists");
         }
-        return (User) dao.save(user);
+        if (user.getRole().getType() != null) {
+            Role.Type role_type = user.getRole().getType();
+            Role role = (Role) getDao.get(role_type);
+            if (role.getType().equals(role_type)) {
+                user.setRole(role);
+                return (User) dao.save(user);
+            }
+        }
+        throw new RuntimeException("Role not valid");
     }
 
     @Override

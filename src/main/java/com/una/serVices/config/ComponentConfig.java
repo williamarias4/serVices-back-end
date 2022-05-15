@@ -6,6 +6,7 @@ public class ComponentConfig {
 
         public static final String USER = "UserDAO";
         public static final String ROLE = "RoleDao";
+        public static final String WORK_EXPERIENCE = "WorkExperienceDao";
         public static final String JOB = "JobDao";
         public static final String PERSON = "PersonDao";
         public static final String USER_RECORD = "UserRecordDao";

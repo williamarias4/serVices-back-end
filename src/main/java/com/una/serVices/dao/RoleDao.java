@@ -16,10 +16,10 @@ import java.util.List;
 
 @Repository
 @Component(value = ComponentConfig.DAO.ROLE)
-public class RoleDao extends HibernateDao implements GetDao<Role,String>{
+public class RoleDao extends HibernateDao implements GetDao<Role,Role.Type>{
 
     @Override
-    public Role get(String role_type) {
+    public Role get(Role.Type role_type) {
         CriteriaBuilder cb = getCurrentSession().getCriteriaBuilder();
         CriteriaQuery<Role> cr = cb.createQuery(Role.class);
         Root<Role> root = cr.from(Role.class);

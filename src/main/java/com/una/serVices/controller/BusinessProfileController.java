@@ -8,7 +8,6 @@ import com.una.serVices.dto.BusinessProfileDto;
 import com.una.serVices.dto.WorkExperienceDto;
 import com.una.serVices.service.ISaveService;
 import com.una.serVices.service.IService;
-import org.hibernate.jdbc.Work;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -19,6 +18,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 @RequestMapping(APIRoute.API.BUSINESS_PROFILE_V1)
@@ -29,7 +30,7 @@ public class BusinessProfileController implements IController<BusinessProfileDto
 
     @Qualifier(ComponentConfig.Service.BUSINESS_PROFILE)
     @Autowired
-    private ISaveService service;
+    private ISaveService saveService;
 
     @Qualifier(ComponentConfig.Service.WORK_EXPERIENCE)
     @Autowired
@@ -39,13 +40,17 @@ public class BusinessProfileController implements IController<BusinessProfileDto
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public BusinessProfileDto save(@Valid @RequestBody BusinessProfileDto businessProfileDto){
         BusinessProfile businessProfile = convertToEntity(businessProfileDto);
-        return convertToDto((BusinessProfile) service.save(businessProfile));
+        return convertToDto((BusinessProfile) saveService.save(businessProfile));
     }
 
     @PostMapping(value =APIRoute.API.WORK_EXPERIENCE_V1, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public WorkExperienceDto save(@Valid @RequestBody WorkExperienceDto workExperienceDto){
-        WorkExperience workExperience = convertToEntity(workExperienceDto);
-        return convertToDto((WorkExperience) service2.save(workExperience));
+    public List<WorkExperienceDto> save(@Valid @RequestBody List<WorkExperienceDto> workExperienceDto){
+        List<WorkExperienceDto> workExperiences =  new ArrayList<>();
+        for(WorkExperienceDto auxDto: workExperienceDto){
+            WorkExperience workExperience = convertToEntity(auxDto);
+            workExperiences.add(convertToDto((WorkExperience) service2.save(workExperience)));
+        }
+        return workExperiences;
     }
 
 
