@@ -23,6 +23,6 @@ public class WorkExperienceDto {
     private Date end_date;
     @NotBlank
     private String description;
-
+    @NotNull
     private BusinessProfile business_profile;
 }

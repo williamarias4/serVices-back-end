@@ -38,19 +38,25 @@ public class BusinessProfileController implements IController<BusinessProfileDto
 
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public BusinessProfileDto save(@Valid @RequestBody BusinessProfileDto businessProfileDto){
+    public BusinessProfileDto save(@Valid @RequestBody BusinessProfileDto businessProfileDto) {
         BusinessProfile businessProfile = convertToEntity(businessProfileDto);
         return convertToDto((BusinessProfile) saveService.save(businessProfile));
     }
 
-    @PostMapping(value =APIRoute.API.WORK_EXPERIENCE_V1, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<WorkExperienceDto> save(@Valid @RequestBody List<WorkExperienceDto> workExperienceDto){
-        List<WorkExperienceDto> workExperiences =  new ArrayList<>();
-        for(WorkExperienceDto auxDto: workExperienceDto){
+    @PostMapping(value = APIRoute.API.WORK_EXPERIENCE_LIST_V1, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<WorkExperienceDto> save(@Valid @RequestBody List<WorkExperienceDto> workExperienceDto) {
+        List<WorkExperienceDto> workExperiences = new ArrayList<>();
+        for (WorkExperienceDto auxDto : workExperienceDto) {
             WorkExperience workExperience = convertToEntity(auxDto);
             workExperiences.add(convertToDto((WorkExperience) service2.save(workExperience)));
         }
         return workExperiences;
+    }
+
+    @PostMapping(value = APIRoute.API.WORK_EXPERIENCE_V1, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public WorkExperienceDto save(@Valid @RequestBody WorkExperienceDto workExperienceDto) {
+        WorkExperience workExperience = convertToEntity(workExperienceDto);
+        return convertToDto((WorkExperience) service2.save(workExperience));
     }
 
 

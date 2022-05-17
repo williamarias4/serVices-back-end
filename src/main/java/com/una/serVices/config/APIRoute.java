@@ -25,6 +25,7 @@ public class APIRoute {
         public static final String USERS_V1 = TYPE + VERSION_1 + "/user";
         public static final String BUSINESS_PROFILE_V1 = TYPE + VERSION_1 + "/business-profile";
         public static final String WORK_EXPERIENCE_V1 = "/experience";
+        public static final String WORK_EXPERIENCE_LIST_V1 = "/experiences";
         public static final String JOB_V1 = TYPE + VERSION_1 + "/job";
     }
 }

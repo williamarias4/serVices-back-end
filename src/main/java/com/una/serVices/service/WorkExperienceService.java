@@ -2,6 +2,7 @@ package com.una.serVices.service;
 
 import com.una.serVices.config.ComponentConfig;
 import com.una.serVices.dao.Dao;
+import com.una.serVices.data.BusinessProfile;
 import com.una.serVices.data.User;
 import com.una.serVices.data.WorkExperience;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,16 +12,19 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
-import java.util.Set;
 
 @Service
 @Transactional
 @Component(value = ComponentConfig.Service.WORK_EXPERIENCE)
 public class WorkExperienceService implements IService<WorkExperience, Long> {
 
-    @Qualifier(ComponentConfig.DAO.USER)
+    @Qualifier(ComponentConfig.DAO.WORK_EXPERIENCE)
     @Autowired
     private Dao dao;
+
+    @Qualifier(ComponentConfig.DAO.BUSINESS_PROFILE)
+    @Autowired
+    private Dao dao2;
 
     @Override
     public WorkExperience get(Long id) {
@@ -39,18 +43,9 @@ public class WorkExperienceService implements IService<WorkExperience, Long> {
 
     @Override
     public WorkExperience save(WorkExperience workExperience) {
-        User user = (User) dao.get(workExperience.getBusiness_profile().getUser().getUser_name());
-        WorkExperience workExperienceAux = new WorkExperience();
-        workExperienceAux.setTitle(workExperience.getTitle());
-        workExperienceAux.setCompany_name(workExperience.getCompany_name());
-        workExperienceAux.setDescription(workExperience.getDescription());
-        workExperienceAux.setStart_date(workExperience.getStart_date());
-        workExperienceAux.setEnd_date(workExperience.getEnd_date());
-        workExperienceAux.setBusiness_profile(user.getBusiness_profile());
-        user.getBusiness_profile().getExperience().add(workExperienceAux);
-        dao.update(user);
-
-        return workExperience;
+        BusinessProfile businessProfile = (BusinessProfile) dao2.get(workExperience.getBusiness_profile().getId());
+        workExperience.setBusiness_profile(businessProfile);
+        return (WorkExperience) dao.save(workExperience);
 
     }
 
