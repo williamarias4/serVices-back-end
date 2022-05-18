@@ -46,12 +46,11 @@ public class WorkExperienceService implements IService<WorkExperience, Long> {
         BusinessProfile businessProfile = (BusinessProfile) dao2.get(workExperience.getBusiness_profile().getId());
         workExperience.setBusiness_profile(businessProfile);
         return (WorkExperience) dao.save(workExperience);
-
     }
 
     @Override
-    public void update(WorkExperience workExperience) {
-        dao.update(workExperience);
+    public WorkExperience update(WorkExperience workExperience) {
+        return (WorkExperience) dao.update(workExperience);
     }
 
     @Override

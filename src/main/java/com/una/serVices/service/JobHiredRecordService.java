@@ -47,8 +47,8 @@ public class JobHiredRecordService implements IService<JobHiredRecord, Long> {
     }
 
     @Override
-    public void update(JobHiredRecord jobH) {
-        dao.update(jobH);
+    public JobHiredRecord update(JobHiredRecord jobH) {
+        return (JobHiredRecord) dao.update(jobH);
     }
 
     @Override

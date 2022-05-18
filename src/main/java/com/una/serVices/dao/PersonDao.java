@@ -51,9 +51,10 @@ public class PersonDao extends HibernateDao implements Dao<Person, Long> {
     }
 
     @Override
-    public void update(Person person) {
+    public Person update(Person person) {
         Preconditions.checkNotNull(person);
         getCurrentSession().update(person);
+        return person;
     }
 
     @Override

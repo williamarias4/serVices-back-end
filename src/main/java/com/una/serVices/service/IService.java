@@ -16,7 +16,7 @@ public interface IService<T,A> {
 
     T save(T t);
 
-    void update(T t);
+    T update(T t);
 
     void delete(T t);
 

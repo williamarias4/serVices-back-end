@@ -51,9 +51,10 @@ public class JobHiredRecordDao extends HibernateDao implements Dao<JobHiredRecor
     }
 
     @Override
-    public void update(JobHiredRecord jobH) {
+    public JobHiredRecord update(JobHiredRecord jobH) {
         Preconditions.checkNotNull(jobH);
         getCurrentSession().merge(jobH);
+        return jobH;
     }
 
     @Override

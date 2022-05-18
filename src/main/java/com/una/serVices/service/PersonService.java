@@ -48,8 +48,8 @@ public class PersonService implements IService<Person, Long> {
     }
 
     @Override
-    public void update(Person person) {
-        dao.update(person);
+    public Person update(Person person) {
+        return (Person) dao.update(person);
     }
 
     @Override

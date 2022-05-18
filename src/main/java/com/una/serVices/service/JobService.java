@@ -16,7 +16,7 @@ import java.util.List;
 @Service
 @Transactional
 @Component(value = ComponentConfig.Service.JOB)
-public class JobService implements IService<Job, Long>, IGetAllByService<Job,String>{
+public class JobService implements IService<Job, Long>, IGetAllByService<Job, String> {
 
     @Qualifier(ComponentConfig.DAO.JOB)
     @Autowired
@@ -40,8 +40,8 @@ public class JobService implements IService<Job, Long>, IGetAllByService<Job,Str
     public List<Job> getAllBy(String user_name) {
         List<Job> jobs = getAll();
         List<Job> jobsAux = new ArrayList<>();
-        for(Job job: jobs){
-            if(job.getPublisher().getUser_name().equals(user_name)){
+        for (Job job : jobs) {
+            if (job.getPublisher().getUser_name().equals(user_name)) {
                 jobsAux.add(job);
             }
         }
@@ -61,8 +61,8 @@ public class JobService implements IService<Job, Long>, IGetAllByService<Job,Str
     }
 
     @Override
-    public void update(Job job) {
-
+    public Job update(Job job) {
+        return (Job) dao.update(job);
     }
 
     @Override

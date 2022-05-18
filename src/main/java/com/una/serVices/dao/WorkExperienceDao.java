@@ -53,9 +53,10 @@ public class WorkExperienceDao extends HibernateDao implements Dao<WorkExperienc
     }
 
     @Override
-    public void update(WorkExperience workExperience) {
+    public WorkExperience update(WorkExperience workExperience) {
         Preconditions.checkNotNull(workExperience);
         getCurrentSession().merge(workExperience);
+        return workExperience;
     }
 
     @Override

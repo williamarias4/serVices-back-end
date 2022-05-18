@@ -66,8 +66,8 @@ public class UserService implements IService<User, String> {
     }
 
     @Override
-    public void update(User user) {
-        dao.update(user);
+    public User update(User user) {
+        return (User) dao.update(user);
     }
 
     @Override

@@ -64,6 +64,8 @@ public class User {
     private JobHiredRecord job_hired_record_customer;
 
     @OneToMany(mappedBy = "publisher", fetch = FetchType.EAGER)
+    //@Getter
+    //@Setter
     private Set<Job> jobs_published;
 
 

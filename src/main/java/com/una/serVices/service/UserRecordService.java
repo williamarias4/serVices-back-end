@@ -48,8 +48,8 @@ public class UserRecordService implements IService<UserRecord, Long> {
     }
 
     @Override
-    public void update(UserRecord userR) {
-        dao.update(userR);
+    public UserRecord update(UserRecord userR) {
+        return (UserRecord) dao.update(userR);
     }
 
     @Override

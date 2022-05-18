@@ -53,9 +53,10 @@ public class BusinessProfileDao extends HibernateDao implements Dao<BusinessProf
     }
 
     @Override
-    public void update(BusinessProfile businessProfile) {
+    public BusinessProfile update(BusinessProfile businessProfile) {
         Preconditions.checkNotNull(businessProfile);
         getCurrentSession().merge(businessProfile);
+        return businessProfile;
     }
 
     @Override

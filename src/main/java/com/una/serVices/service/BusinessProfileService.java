@@ -17,13 +17,17 @@ import java.util.List;
 @Component(value = ComponentConfig.Service.BUSINESS_PROFILE)
 public class BusinessProfileService implements ISaveService<BusinessProfile> {
 
-    @Qualifier(ComponentConfig.DAO.USER)
+    @Qualifier(ComponentConfig.DAO.BUSINESS_PROFILE)
     @Autowired
     private Dao dao;
 
+    @Qualifier(ComponentConfig.DAO.USER)
+    @Autowired
+    private Dao dao2;
+
     @Override
     public boolean exists(BusinessProfile businessProfile) {
-        List<User> users = dao.getAll();
+        List<User> users = dao2.getAll();
         for (User userAux : users) {
             if (userAux.getUser_name().equals(businessProfile.getUser().getUser_name()) && userAux.getBusiness_profile() != null) {
                 return true;
@@ -38,29 +42,25 @@ public class BusinessProfileService implements ISaveService<BusinessProfile> {
         if (exists(businessProfile)) {
             throw new RuntimeException("Business Profile already exists");
         }
-        User userAux = (User) dao.get(businessProfile.getUser().getUser_name());
+        User user = (User) dao2.get(businessProfile.getUser().getUser_name());
         BusinessProfile businessProfileAux = new BusinessProfile();
         businessProfileAux.setAbout(businessProfile.getAbout());
         businessProfileAux.setExperience(businessProfile.getExperience());
         businessProfileAux.setJobs(businessProfile.getJobs());
-        businessProfileAux.setUser(userAux);
-        userAux.setBusiness_profile(businessProfileAux);
-        dao.update(userAux);
+        businessProfileAux.setUser(user);
+        user.setBusiness_profile(businessProfileAux);
+        dao2.update(user);
         if (exists(businessProfile)) {
-            User user = (User) dao.get(businessProfile.getUser().getUser_name());
-            return user.getBusiness_profile();
+            User userAux = (User) dao2.get(businessProfile.getUser().getUser_name());
+            return userAux.getBusiness_profile();
         }
         return null;
 
     }
 
     @Override
-    public void update(BusinessProfile businessProfile) {
-        User user = (User) dao.get(businessProfile.getUser().getUser_name());
-        user.getBusiness_profile().setAbout(businessProfile.getAbout());
-        user.getBusiness_profile().setExperience(businessProfile.getExperience());
-        user.getBusiness_profile().setJobs(businessProfile.getJobs());
-        dao.update(user);
+    public BusinessProfile update(BusinessProfile businessProfile) {
+        return (BusinessProfile) dao.update(businessProfile);
     }
 
 }

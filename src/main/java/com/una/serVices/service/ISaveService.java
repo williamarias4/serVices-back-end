@@ -6,5 +6,5 @@ public interface ISaveService<T> {
 
     T save(T t);
 
-    void update(T t);
+    T update(T t);
 }

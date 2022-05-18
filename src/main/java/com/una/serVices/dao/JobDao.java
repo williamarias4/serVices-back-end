@@ -52,9 +52,10 @@ public class JobDao extends HibernateDao implements Dao<Job, Long> {
     }
 
     @Override
-    public void update(Job job) {
+    public Job update(Job job) {
         Preconditions.checkNotNull(job);
         getCurrentSession().merge(job);
+        return job;
     }
 
     @Override
