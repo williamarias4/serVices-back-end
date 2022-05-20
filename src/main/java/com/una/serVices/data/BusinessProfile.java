@@ -37,7 +37,7 @@ public class BusinessProfile {
     @Setter
     private Set<Job> jobs;
 
-    @OneToOne(mappedBy = "business_profile", cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "business_profile")
     @JsonManagedReference
     @Getter
     @Setter

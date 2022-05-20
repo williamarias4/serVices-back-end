@@ -1,8 +1,8 @@
 package com.una.serVices.dao;
 
+import com.google.common.base.Preconditions;
 import com.una.serVices.config.ComponentConfig;
 import com.una.serVices.data.Role;
-import com.una.serVices.data.User;
 import org.hibernate.Hibernate;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
@@ -16,7 +16,7 @@ import java.util.List;
 
 @Repository
 @Component(value = ComponentConfig.DAO.ROLE)
-public class RoleDao extends HibernateDao implements GetDao<Role,Role.Type>{
+public class RoleDao extends HibernateDao implements GetDao<Role, Role.Type> {
 
     @Override
     public Role get(Role.Type role_type) {
@@ -42,5 +42,10 @@ public class RoleDao extends HibernateDao implements GetDao<Role,Role.Type>{
         TypedQuery<Role> allQuery = getCurrentSession().createQuery(all);
         Hibernate.initialize(allQuery.getResultList());
         return allQuery.getResultList();
+    }
+
+    public void save(Role role) {
+        Preconditions.checkNotNull(role);
+        getCurrentSession().save(role);
     }
 }
