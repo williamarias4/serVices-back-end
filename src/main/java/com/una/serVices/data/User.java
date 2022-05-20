@@ -3,6 +3,7 @@ package com.una.serVices.data;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.una.serVices.config.JsonReferenceConfig;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -16,7 +17,9 @@ public class User {
     //<editor-fold defaultstate="collapsed" desc="Variable Def">
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+    @Column(name = "id", nullable = false)
+    @Getter
+    @Setter
     private long id;
 
     @Column(name = "user_name", unique = true)
@@ -36,19 +39,21 @@ public class User {
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "person_id", referencedColumnName = "id_number")
+    @JsonBackReference(value = JsonReferenceConfig.USER_PERSON)
     @Getter
     @Setter
     private Person person;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "role_id", referencedColumnName = "id")
+    @JsonBackReference(value = JsonReferenceConfig.USER_ROLE)
     @Getter
     @Setter
     private Role role;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "business_profile_id", referencedColumnName = "id")
-    @JsonBackReference
+    @JsonBackReference(value = JsonReferenceConfig.USER_BUSINESS_PROFILE)
     @Getter
     @Setter
     private BusinessProfile business_profile;
@@ -64,8 +69,9 @@ public class User {
     private JobHiredRecord job_hired_record_customer;
 
     @OneToMany(mappedBy = "publisher", fetch = FetchType.EAGER)
-    //@Getter
-    //@Setter
+    @JsonBackReference(value = JsonReferenceConfig.USER_JOBS_PUBLISHED)
+    @Getter
+    @Setter
     private Set<Job> jobs_published;
 
 

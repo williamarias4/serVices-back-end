@@ -1,5 +1,6 @@
 package com.una.serVices.data;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.Setter;
 

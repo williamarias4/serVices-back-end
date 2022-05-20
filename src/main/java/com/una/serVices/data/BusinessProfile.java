@@ -4,6 +4,7 @@ package com.una.serVices.data;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.una.serVices.config.JsonReferenceConfig;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -38,7 +39,7 @@ public class BusinessProfile {
     private Set<Job> jobs;
 
     @OneToOne(mappedBy = "business_profile")
-    @JsonManagedReference
+    @JsonBackReference(value = JsonReferenceConfig.USER_BUSINESS_PROFILE)
     @Getter
     @Setter
     private User user;

@@ -2,6 +2,7 @@ package com.una.serVices.data;
 
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.una.serVices.config.JsonReferenceConfig;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -61,6 +62,7 @@ public class Job {
 
     @ManyToOne
     @JoinColumn(name = "publisher_id", referencedColumnName = "id")
+    @JsonBackReference(value = JsonReferenceConfig.USER_JOBS_PUBLISHED)
     @Getter
     @Setter
     private User publisher;

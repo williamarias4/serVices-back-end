@@ -10,6 +10,7 @@ import java.util.Set;
 @Data
 public class UserDto {
 
+    private long id;
     @NotBlank
     private String user_name;
     @NotBlank
