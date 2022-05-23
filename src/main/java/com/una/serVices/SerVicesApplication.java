@@ -42,14 +42,16 @@ public class SerVicesApplication {
 
     @Scheduled(fixedRate = 43200000L)
     public void initRoles() {
-        Role publisher = new Role();
-        Role customer = new Role();
-        publisher.setId(1);
-        publisher.setType(Role.Type.publisher);
-        customer.setId(2);
-        customer.setType(Role.Type.customer);
-        dao.save(publisher);
-        dao.save(customer);
+        if (dao.getAll() == null) {
+            Role publisher = new Role();
+            Role customer = new Role();
+            publisher.setId(1);
+            publisher.setType(Role.Type.publisher);
+            customer.setId(2);
+            customer.setType(Role.Type.customer);
+            dao.save(publisher);
+            dao.save(customer);
+        }
     }
 
 }

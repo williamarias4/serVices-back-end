@@ -5,6 +5,7 @@ import com.una.serVices.dao.Dao;
 import com.una.serVices.data.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
@@ -21,14 +22,13 @@ public class LoginService implements ILoginService {
     @Autowired
     private Dao dao;
 
-
     @Override
     public User login(User user) {
         List<User> users = new ArrayList<>();
         users = dao.getAll();
         for (User userAux : users) {
-            if (userAux.getUser_name().equals(user.getUser_name()) && userAux.getPassword()
-                    .equals(user.getPassword())) {
+            if (userAux.getUser_name().equals(user.getUser_name()) && BCrypt.checkpw(user.getPassword(),
+                    userAux.getPassword())) {
                 return userAux;
             }
 
