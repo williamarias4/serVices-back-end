@@ -7,6 +7,7 @@ import com.una.serVices.data.Role;
 import com.una.serVices.data.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
@@ -26,6 +27,9 @@ public class UserService implements IService<User, String> {
     @Qualifier(ComponentConfig.DAO.ROLE)
     @Autowired
     private GetDao getDao;
+
+    @Autowired
+    private PasswordEncoder bcryptEncoder;
 
     @Override
     public User get(String user_name) {
@@ -51,9 +55,11 @@ public class UserService implements IService<User, String> {
 
     @Override
     public User save(User user) {
-        if (exists(user)) {
+        /*if (exists(user)) {
             throw new RuntimeException("User already exists");
-        }
+        }*/
+        String pass = user.getPassword();
+        user.setPassword(bcryptEncoder.encode(pass));
         if (user.getRole().getType() != null) {
             Role.Type role_type = user.getRole().getType();
             Role role = (Role) getDao.get(role_type);

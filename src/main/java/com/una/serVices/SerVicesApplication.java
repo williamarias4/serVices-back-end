@@ -12,6 +12,8 @@ import org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfigurat
 import org.springframework.context.annotation.Bean;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import javax.transaction.Transactional;
 
@@ -28,6 +30,16 @@ public class SerVicesApplication {
         SpringApplication.run(SerVicesApplication.class, args);
     }
 
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
+
+    @Bean
+    public ModelMapper modelMapper() {
+        return new ModelMapper();
+    }
+
     @Scheduled(fixedRate = 43200000L)
     public void initRoles() {
         Role publisher = new Role();
@@ -38,11 +50,6 @@ public class SerVicesApplication {
         customer.setType(Role.Type.customer);
         dao.save(publisher);
         dao.save(customer);
-    }
-
-    @Bean
-    public ModelMapper modelMapper() {
-        return new ModelMapper();
     }
 
 }

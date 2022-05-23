@@ -2,6 +2,7 @@ package com.una.serVices.data;
 
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.una.serVices.config.JsonReferenceConfig;
 import lombok.Getter;
@@ -30,6 +31,7 @@ public class User {
     @Column(name = "password")
     @Getter
     @Setter
+    //@JsonIgnore
     private String password;
 
     @Column(name = "reset_password_token")
