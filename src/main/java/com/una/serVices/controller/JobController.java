@@ -32,6 +32,12 @@ public class JobController implements IController<JobDto, Job>{
     @Autowired
     private IGetAllByService get_service;
 
+    @GetMapping
+    public List<JobDto> getAll() {
+        return (List<JobDto>) service.getAll().stream().map(job -> modelMapper
+                .map(job, JobDto.class)).collect(Collectors.toList());
+    }
+
     @GetMapping(APIRoute.RestAPI.GET_BY_USER_NAME)
     public List<JobDto> getAllByPublisher(@PathVariable String user_name){
         return (List<JobDto>) get_service.getAllBy(user_name).stream().map(job -> modelMapper

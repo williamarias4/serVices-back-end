@@ -41,7 +41,7 @@ public class User {
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "person_id", referencedColumnName = "id_number")
-    @JsonBackReference(value = JsonReferenceConfig.USER_PERSON)
+    //@JsonBackReference(value = JsonReferenceConfig.USER_PERSON)
     @Getter
     @Setter
     private Person person;

@@ -13,6 +13,7 @@ public class Person {
 
     @Id
     @Column(name = "id_number")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Getter
     @Setter
     private long id_number;

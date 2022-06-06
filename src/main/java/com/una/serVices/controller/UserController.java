@@ -84,6 +84,13 @@ public class UserController implements IController<UserDto, User> {
         return convertToDto((User) service.save(user));
     }
 
+    @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public UserDto update(@RequestBody UserDto userDTO) {
+        User user = convertToEntity(userDTO);
+        return convertToDto((User) service.update(user));
+    }
+
     @PostMapping(value = APIRoute.Session.LOG_IN, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public UserDto login(@Valid @RequestBody LoginDto loginDto) {
