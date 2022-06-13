@@ -1,0 +1,1 @@
+web: java -jar build/libs/backend-services-app-1.0.jar
