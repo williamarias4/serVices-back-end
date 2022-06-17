@@ -33,9 +33,21 @@ public class JobController implements IController<JobDto, Job>{
     private IGetAllByService get_service;
 
     @GetMapping
-    public List<JobDto> getAll() {
-        return (List<JobDto>) service.getAll().stream().map(job -> modelMapper
-                .map(job, JobDto.class)).collect(Collectors.toList());
+    public List<JobDto> getAll(@RequestParam(required = false) String userName) {
+        List<JobDto> services = (List<JobDto>) service
+                .getAll()
+                .stream()
+                .map(job -> modelMapper.map(job, JobDto.class))
+                .collect(Collectors.toList());
+
+        if (userName != null) {
+            return services
+                    .stream()
+                    .filter(job -> job.getPublisher().getUser_name().equals(userName))
+                    .collect(Collectors.toList());
+        }
+
+        return services;
     }
 
     @GetMapping(APIRoute.RestAPI.GET_BY_USER_NAME)
