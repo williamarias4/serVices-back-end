@@ -60,8 +60,8 @@ public class WorkExperienceDao extends HibernateDao implements Dao<WorkExperienc
     }
 
     @Override
-    public void delete(WorkExperience workExperience) {
-        Preconditions.checkNotNull(workExperience);
-        getCurrentSession().delete(workExperience);
+    public void delete(Long id) {
+//        Preconditions.checkNotNull(workExperience);
+//        getCurrentSession().delete(workExperience);
     }
 }

@@ -62,6 +62,12 @@ public class JobController implements IController<JobDto, Job>{
         return convertToDto((Job) service.save(job));
     }
 
+    @DeleteMapping("{id}")
+    @ResponseBody
+    public void delete(@PathVariable Long id) {
+        service.delete(id);
+    }
+
     @Override
     public JobDto convertToDto(Job job) {
         return modelMapper.map(job, JobDto.class);

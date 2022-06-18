@@ -54,7 +54,7 @@ public class WorkExperienceService implements IService<WorkExperience, Long> {
     }
 
     @Override
-    public void delete(WorkExperience workExperience) {
-        dao.delete(workExperience);
+    public void delete(Long id) {
+        dao.delete(id);
     }
 }

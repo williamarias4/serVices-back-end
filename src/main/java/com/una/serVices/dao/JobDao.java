@@ -59,9 +59,9 @@ public class JobDao extends HibernateDao implements Dao<Job, Long> {
     }
 
     @Override
-    public void delete(Job job) {
-        Preconditions.checkNotNull(job);
-        getCurrentSession().delete(job);
+    public void delete(Long id) {
+        System.out.println("Deleting job with id: " + id);
+        getCurrentSession().delete(getCurrentSession().get(Job.class, id));
     }
 }
 

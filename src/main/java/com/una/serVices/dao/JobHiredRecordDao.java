@@ -58,9 +58,9 @@ public class JobHiredRecordDao extends HibernateDao implements Dao<JobHiredRecor
     }
 
     @Override
-    public void delete(JobHiredRecord jobH) {
-        Preconditions.checkNotNull(jobH);
-        getCurrentSession().delete(jobH);
+    public void delete(Long id) {
+//        Preconditions.checkNotNull(jobH);
+//        getCurrentSession().delete(jobH);
     }
 }
 

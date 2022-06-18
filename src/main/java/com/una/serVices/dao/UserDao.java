@@ -61,8 +61,8 @@ public class UserDao extends HibernateDao implements Dao<User, String> {
     }
 
     @Override
-    public void delete(User user) {
-        Preconditions.checkNotNull(user);
-        getCurrentSession().delete(user);
+    public void delete(Long id) {
+//        Preconditions.checkNotNull(user);
+//        getCurrentSession().delete(user);
     }
 }

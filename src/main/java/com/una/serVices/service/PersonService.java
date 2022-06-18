@@ -53,8 +53,8 @@ public class PersonService implements IService<Person, Long> {
     }
 
     @Override
-    public void delete(Person person) {
-        dao.delete(person);
+    public void delete(Long id) {
+        dao.delete(id);
     }
 
 

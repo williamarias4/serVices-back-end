@@ -52,8 +52,8 @@ public class JobHiredRecordService implements IService<JobHiredRecord, Long> {
     }
 
     @Override
-    public void delete(JobHiredRecord jobH) {
-        dao.delete(jobH);
+    public void delete(Long id) {
+        dao.delete(id);
     }
 
 

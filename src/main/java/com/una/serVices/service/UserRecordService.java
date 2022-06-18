@@ -53,8 +53,8 @@ public class UserRecordService implements IService<UserRecord, Long> {
     }
 
     @Override
-    public void delete(UserRecord userR) {
-        dao.delete(userR);
+    public void delete(Long id) {
+        dao.delete(id);
     }
 
 

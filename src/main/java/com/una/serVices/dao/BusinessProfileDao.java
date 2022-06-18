@@ -60,8 +60,8 @@ public class BusinessProfileDao extends HibernateDao implements Dao<BusinessProf
     }
 
     @Override
-    public void delete(BusinessProfile businessProfile) {
-        Preconditions.checkNotNull(businessProfile);
-        getCurrentSession().delete(businessProfile);
+    public void delete(Long id) {
+//        Preconditions.checkNotNull(businessProfile);
+//        getCurrentSession().delete(businessProfile);
     }
 }

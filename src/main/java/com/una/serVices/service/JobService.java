@@ -66,9 +66,7 @@ public class JobService implements IService<Job, Long>, IGetAllByService<Job, St
     }
 
     @Override
-    public void delete(Job job) {
-
+    public void delete(Long id) {
+        dao.delete(id);
     }
-
-
 }
