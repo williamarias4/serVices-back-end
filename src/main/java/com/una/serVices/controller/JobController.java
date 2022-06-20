@@ -68,6 +68,13 @@ public class JobController implements IController<JobDto, Job>{
         service.delete(id);
     }
 
+    @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public JobDto update(@RequestBody JobDto jobDTO) {
+        Job job = convertToEntity(jobDTO);
+        return convertToDto((Job) service.update(job));
+    }
+
     @Override
     public JobDto convertToDto(Job job) {
         return modelMapper.map(job, JobDto.class);
