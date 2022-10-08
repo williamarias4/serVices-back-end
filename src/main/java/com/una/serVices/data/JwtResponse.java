@@ -4,10 +4,10 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
+@Getter
+@Setter
 @Data
 public class JwtResponse {
 
-    @Getter
-    @Setter
     private final String jwtToken;
 }

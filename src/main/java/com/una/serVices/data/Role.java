@@ -6,14 +6,14 @@ import lombok.Setter;
 
 import javax.persistence.*;
 
+@Getter
+@Setter
 @Entity
 @Table(name = "role")
 public class Role {
 
     @Id
     @Column(name = "id")
-    @Getter
-    @Setter
     private long id;
 
     public enum Type {
@@ -22,8 +22,6 @@ public class Role {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "type")
-    @Getter
-    @Setter
     private Type type;
 
     @OneToOne(mappedBy = "role")

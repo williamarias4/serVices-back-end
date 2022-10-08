@@ -7,6 +7,8 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.util.Date;
 
+@Getter
+@Setter
 @Entity
 @Table(name = "job_hired_record")
 public class JobHiredRecord {
@@ -18,25 +20,17 @@ public class JobHiredRecord {
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "job_id", referencedColumnName = "id")
-    @Getter
-    @Setter
     private Job job;
 
     @Column(name = "hire_date", columnDefinition = "DATE")
-    @Getter
-    @Setter
     private Date hire_date;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "publisher_id", referencedColumnName = "id")
-    @Getter
-    @Setter
     private User publisher;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "customer_id", referencedColumnName = "id")
-    @Getter
-    @Setter
     private User customer;
 
     @ManyToOne
