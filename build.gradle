@@ -29,6 +29,8 @@ dependencies {
 	implementation 'org.modelmapper:modelmapper:3.1.0'
 	implementation group: 'org.apache.tomcat', name: 'tomcat-dbcp', version: '8.5.32'
 	implementation group: 'com.google.guava', name: 'guava', version: '27.0.1-jre'
+	implementation 'org.mapstruct:mapstruct:1.5.3.Final'
+	annotationProcessor 'org.mapstruct:mapstruct-processor:1.5.3.Final'
 	compileOnly 'org.projectlombok:lombok'
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	runtimeOnly 'mysql:mysql-connector-java'

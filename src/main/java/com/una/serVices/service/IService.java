@@ -9,15 +9,10 @@ import java.util.Optional;
 public interface IService<T,A> {
 
     T get(A id);
-
     List<T> getAll();
-
     boolean exists(T t);
-
     T save(T t);
-
     T update(T t);
-
     void delete(T t);
 
 }

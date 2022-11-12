@@ -30,23 +30,17 @@ import java.util.stream.Collectors;
 @RequestMapping(APIRoute.API.USERS_V1)
 @CrossOrigin
 public class UserController implements IController<UserDto, User> {
-
     @Autowired
     private AuthenticationManager authenticationManager;
-
     @Autowired
     private JwtTokenUtil jwtTokenUtil;
-
     @Autowired
     private JwtUserService jwtUserService;
-
     @Autowired
     private ModelMapper modelMapper;
-
     @Qualifier(ComponentConfig.Service.USER)
     @Autowired
     private IService service;
-
     @Autowired
     private ILoginService login;
 
@@ -100,7 +94,6 @@ public class UserController implements IController<UserDto, User> {
             throw new Exception("INVALID_CREDENTIALS", e);
         }
     }
-
 
     public User convertToEntity(LoginDto loginDto) {
         return modelMapper.map(loginDto, User.class);
