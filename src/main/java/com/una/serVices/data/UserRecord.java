@@ -8,6 +8,8 @@ import javax.persistence.*;
 import java.util.List;
 import java.util.Set;
 
+@Getter
+@Setter
 @Entity
 @Table(name = "user_record")
 public class UserRecord {
@@ -19,13 +21,9 @@ public class UserRecord {
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id", referencedColumnName = "id")
-    @Getter
-    @Setter
     private User user;
 
     @OneToMany(mappedBy = "user_record", cascade = CascadeType.ALL)
-    @Getter
-    @Setter
     private Set<JobHiredRecord> jobs_hired;
 
 

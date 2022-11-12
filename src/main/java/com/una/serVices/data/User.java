@@ -11,6 +11,8 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.util.Set;
 
+@Getter
+@Setter
 @Entity
 @Table(name = "user")
 public class User {
@@ -19,45 +21,31 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
-    @Getter
-    @Setter
     private long id;
 
     @Column(name = "user_name", unique = true)
-    @Getter
-    @Setter
     private String user_name;
 
     @Column(name = "password")
-    @Getter
-    @Setter
     //@JsonIgnore
     private String password;
 
     @Column(name = "reset_password_token")
-    @Getter
-    @Setter
     private String reset_password_token;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "person_id", referencedColumnName = "id_number")
     @JsonBackReference(value = JsonReferenceConfig.USER_PERSON)
-    @Getter
-    @Setter
     private Person person;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "role_id", referencedColumnName = "id")
     @JsonBackReference(value = JsonReferenceConfig.USER_ROLE)
-    @Getter
-    @Setter
     private Role role;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "business_profile_id", referencedColumnName = "id")
     @JsonBackReference(value = JsonReferenceConfig.USER_BUSINESS_PROFILE)
-    @Getter
-    @Setter
     private BusinessProfile business_profile;
     //</editor-fold>
 
@@ -72,8 +60,6 @@ public class User {
 
     @OneToMany(mappedBy = "publisher", fetch = FetchType.EAGER)
     @JsonBackReference(value = JsonReferenceConfig.USER_JOBS_PUBLISHED)
-    @Getter
-    @Setter
     private Set<Job> jobs_published;
 
 

@@ -11,6 +11,8 @@ import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.Set;
 
+@Getter
+@Setter
 @Entity
 @Table(name = "job")
 public class Job {
@@ -19,33 +21,21 @@ public class Job {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    @Getter
-    @Setter
     private long id;
 
     @Column(name = "title")
-    @Getter
-    @Setter
     private String title;
 
     @Column(name = "description")
-    @Getter
-    @Setter
     private String description;
 
     @Column(name = "category")
-    @Getter
-    @Setter
     private String category;
 
     @Column(name = "price", columnDefinition = "decimal", length = 10, precision = 2)
-    @Getter
-    @Setter
     private BigDecimal price;
 
     @Column(name = "active")
-    @Getter
-    @Setter
     private boolean active;
     //</editor-fold>
 
@@ -53,8 +43,6 @@ public class Job {
     @JoinTable(name = "profile_job", joinColumns = {@JoinColumn(name = "job_id")},
             inverseJoinColumns = {@JoinColumn(name = "business_profile_id")})
     @JsonBackReference
-    @Getter
-    @Setter
     Set<BusinessProfile> business_profiles = new HashSet<>();
 
     @OneToOne(mappedBy = "job")
@@ -63,7 +51,5 @@ public class Job {
     @ManyToOne
     @JoinColumn(name = "publisher_id", referencedColumnName = "id")
     @JsonBackReference(value = JsonReferenceConfig.USER_JOBS_PUBLISHED)
-    @Getter
-    @Setter
     private User publisher;
 }
