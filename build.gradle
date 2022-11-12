@@ -12,6 +12,9 @@ configurations {
 	compileOnly {
 		extendsFrom annotationProcessor
 	}
+	//compileJava { options.compilerArgs += [ '-Amapstruct.suppressGeneratorTimestamp=true', '-Amapstruct.suppressGeneratorVersionInfoComment=true', '-Amapstruct.verbose=true' ] }
+
+
 }
 
 repositories {
@@ -29,13 +32,14 @@ dependencies {
 	implementation 'org.modelmapper:modelmapper:3.1.0'
 	implementation group: 'org.apache.tomcat', name: 'tomcat-dbcp', version: '8.5.32'
 	implementation group: 'com.google.guava', name: 'guava', version: '27.0.1-jre'
+	compileOnly 'org.projectlombok:lombok'
+	annotationProcessor 'org.projectlombok:lombok'
 	implementation 'org.mapstruct:mapstruct:1.5.3.Final'
 	annotationProcessor 'org.mapstruct:mapstruct-processor:1.5.3.Final'
-	compileOnly 'org.projectlombok:lombok'
+	testAnnotationProcessor "org.mapstruct:mapstruct-processor:1.5.3.Final"
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	runtimeOnly 'mysql:mysql-connector-java'
 	runtimeOnly 'org.postgresql:postgresql'
-	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 

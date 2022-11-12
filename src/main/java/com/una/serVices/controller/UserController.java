@@ -7,6 +7,7 @@ import com.una.serVices.data.JwtResponse;
 import com.una.serVices.data.User;
 import com.una.serVices.dto.LoginDto;
 import com.una.serVices.dto.UserDto;
+import com.una.serVices.mapper.UserMapper;
 import com.una.serVices.service.ILoginService;
 import com.una.serVices.service.IService;
 import com.una.serVices.service.JwtUserService;
@@ -30,6 +31,7 @@ import java.util.stream.Collectors;
 @RequestMapping(APIRoute.API.USERS_V1)
 @CrossOrigin
 public class UserController implements IController<UserDto, User> {
+
     @Autowired
     private AuthenticationManager authenticationManager;
     @Autowired
@@ -43,11 +45,13 @@ public class UserController implements IController<UserDto, User> {
     private IService service;
     @Autowired
     private ILoginService login;
+    @Autowired
+    private UserMapper userMapper;
 
 
     @GetMapping(APIRoute.Session.GET_BY_USER_NAME)
-    public UserDto getByUsername(@PathVariable String user_name) {
-        return convertToDto((User) service.get(user_name));
+    public ResponseEntity<UserDto> getByUsername(@PathVariable String user_name) {
+        return ResponseEntity.ok(userMapper.convertToDto((User) service.get(user_name)));
     }
 
     @GetMapping(APIRoute.RestAPI.GET_ALL)

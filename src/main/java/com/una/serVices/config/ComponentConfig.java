@@ -3,7 +3,6 @@ package com.una.serVices.config;
 public class ComponentConfig {
 
     public class DAO {
-
         public static final String USER = "UserDAO";
         public static final String ROLE = "RoleDao";
         public static final String BUSINESS_PROFILE = "BusinessProfileDao";
@@ -16,7 +15,6 @@ public class ComponentConfig {
     }
 
     public class Service {
-
         public static final String USER = "UserService";
         public static final String BUSINESS_PROFILE = "BusinessProfileService";
         public static final String WORK_EXPERIENCE = "WorkExperienceService";
@@ -25,5 +23,9 @@ public class ComponentConfig {
         public static final String JOB_HIRED_RECORD = "JobHiredRecordService";
         public static final String JOB = "JobService";
 
+    }
+
+    public class Mapper {
+        public static final String SPRING = "spring";
     }
 }
