@@ -42,7 +42,7 @@ public class SerVicesApplication {
 
     @Scheduled(fixedRate = 43200000L)
     public void initRoles() {
-        if (dao.getAll() == null) {
+        if (dao.getAll().isEmpty()) {
             Role publisher = new Role();
             Role customer = new Role();
             publisher.setId(1);

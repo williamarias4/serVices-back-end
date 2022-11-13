@@ -48,7 +48,6 @@ public class UserController implements IController<UserDto, User> {
     @Autowired
     private UserMapper userMapper;
 
-
     @GetMapping(APIRoute.Session.GET_BY_USER_NAME)
     public ResponseEntity<UserDto> getByUsername(@PathVariable String user_name) {
         return ResponseEntity.ok(userMapper.convertToDto((User) service.get(user_name)));
