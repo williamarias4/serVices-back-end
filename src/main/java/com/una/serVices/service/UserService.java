@@ -33,8 +33,13 @@ public class UserService implements IService<User, String> {
 
     @Override
     public User get(String user_name) {
-        User user = (User) dao.get(user_name);
-        return (User) dao.get(user_name);
+        User user = new User();
+        user.setUser_name(user_name);
+
+        if (user_name != null && exists(user)) {
+            return (User) dao.get(user_name);
+        }
+        return null;
     }
 
     @Override
