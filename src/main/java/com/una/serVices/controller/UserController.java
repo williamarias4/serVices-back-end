@@ -42,7 +42,7 @@ public class UserController implements IController<UserDto, User> {
     private ModelMapper modelMapper;
     @Qualifier(ComponentConfig.Service.USER)
     @Autowired
-    private IService service;
+    private IService<User, String> service;
     @Autowired
     private ILoginService login;
     @Autowired
@@ -50,12 +50,12 @@ public class UserController implements IController<UserDto, User> {
 
     @GetMapping(APIRoute.Session.GET_BY_USER_NAME)
     public ResponseEntity<UserDto> getByUsername(@PathVariable String user_name) {
-        return ResponseEntity.ok(userMapper.convertToDto((User) service.get(user_name)));
+        return ResponseEntity.ok(userMapper.convertToDto(service.get(user_name)));
     }
 
     @GetMapping(APIRoute.RestAPI.GET_ALL)
     public List<UserDto> getAllUsers() {
-        return (List<UserDto>) service.getAll().stream().map(user -> modelMapper
+        return service.getAll().stream().map(user -> modelMapper
                 .map(user, UserDto.class)).collect(Collectors.toList());
     }
 
@@ -78,7 +78,7 @@ public class UserController implements IController<UserDto, User> {
     @ResponseBody
     public UserDto save(@Valid @RequestBody UserDto userDto) {
         User user = convertToEntity(userDto);
-        return convertToDto((User) service.save(user));
+        return convertToDto(service.save(user));
     }
 
     @PostMapping(value = APIRoute.Session.LOG_IN, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
