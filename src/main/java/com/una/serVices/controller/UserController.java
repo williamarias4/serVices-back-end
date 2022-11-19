@@ -7,6 +7,7 @@ import com.una.serVices.data.JwtResponse;
 import com.una.serVices.data.User;
 import com.una.serVices.dto.LoginDto;
 import com.una.serVices.dto.UserDto;
+import com.una.serVices.mapper.LoginMapper;
 import com.una.serVices.mapper.UserMapper;
 import com.una.serVices.service.ILoginService;
 import com.una.serVices.service.IService;
@@ -47,6 +48,8 @@ public class UserController implements IController<UserDto, User> {
     private ILoginService login;
     @Autowired
     private UserMapper userMapper;
+    @Autowired
+    private LoginMapper loginMapper;
 
     @GetMapping(APIRoute.Session.GET_BY_USER_NAME)
     public ResponseEntity<UserDto> getByUsername(@PathVariable String user_name) {
