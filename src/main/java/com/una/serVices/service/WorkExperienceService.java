@@ -3,7 +3,6 @@ package com.una.serVices.service;
 import com.una.serVices.config.ComponentConfig;
 import com.una.serVices.dao.Dao;
 import com.una.serVices.data.BusinessProfile;
-import com.una.serVices.data.User;
 import com.una.serVices.data.WorkExperience;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -18,11 +17,11 @@ import java.util.List;
 @Component(value = ComponentConfig.Service.WORK_EXPERIENCE)
 public class WorkExperienceService implements IService<WorkExperience, Long> {
 
-    @Qualifier(ComponentConfig.DAO.WORK_EXPERIENCE)
+    @Qualifier(ComponentConfig.DAO.WORK_EXPERIENCE_V_1)
     @Autowired
     private Dao dao;
 
-    @Qualifier(ComponentConfig.DAO.BUSINESS_PROFILE)
+    @Qualifier(ComponentConfig.DAO.BUSINESS_PROFILE_V_1)
     @Autowired
     private Dao dao2;
 

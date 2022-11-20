@@ -22,7 +22,7 @@ import javax.transaction.Transactional;
 @SpringBootApplication(exclude = HibernateJpaAutoConfiguration.class)
 public class SerVicesApplication {
 
-    @Qualifier(ComponentConfig.DAO.ROLE)
+    @Qualifier(ComponentConfig.DAO.ROLE_V_1)
     @Autowired
     private RoleDao dao;
 

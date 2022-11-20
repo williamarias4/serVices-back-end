@@ -3,7 +3,6 @@ package com.una.serVices.dao;
 import com.google.common.base.Preconditions;
 import com.una.serVices.config.ComponentConfig;
 import com.una.serVices.data.BusinessProfile;
-import com.una.serVices.data.User;
 import org.hibernate.Hibernate;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
@@ -16,7 +15,7 @@ import javax.persistence.criteria.Root;
 import java.util.List;
 
 @Repository
-@Component(value = ComponentConfig.DAO.BUSINESS_PROFILE)
+@Component(value = ComponentConfig.DAO.BUSINESS_PROFILE_V_1)
 public class BusinessProfileDao extends HibernateDao implements Dao<BusinessProfile, Long>{
 
     @Override

@@ -17,11 +17,11 @@ import java.util.List;
 @Component(value = ComponentConfig.Service.BUSINESS_PROFILE)
 public class BusinessProfileService implements ISaveService<BusinessProfile> {
 
-    @Qualifier(ComponentConfig.DAO.BUSINESS_PROFILE)
+    @Qualifier(ComponentConfig.DAO.BUSINESS_PROFILE_V_1)
     @Autowired
     private Dao dao;
 
-    @Qualifier(ComponentConfig.DAO.USER)
+    @Qualifier(ComponentConfig.DAO.USER_V_1)
     @Autowired
     private Dao dao2;
 

@@ -31,7 +31,7 @@ import java.util.stream.Collectors;
 @RestController
 @RequestMapping(APIRoute.API.USERS_V1)
 @CrossOrigin
-public class UserController implements IController<UserDto, User> {
+public class UserController {
 
     @Autowired
     private AuthenticationManager authenticationManager;
@@ -101,23 +101,6 @@ public class UserController implements IController<UserDto, User> {
         } catch (BadCredentialsException e) {
             throw new Exception("INVALID_CREDENTIALS", e);
         }
-    }
-
-    @Deprecated
-    public User convertToEntity(LoginDto loginDto) {
-        return modelMapper.map(loginDto, User.class);
-    }
-
-    @Deprecated
-    @Override
-    public UserDto convertToDto(User user) {
-        return modelMapper.map(user, UserDto.class);
-    }
-
-    @Deprecated
-    @Override
-    public User convertToEntity(UserDto userDto) {
-        return modelMapper.map(userDto, User.class);
     }
 
 }

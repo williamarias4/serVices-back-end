@@ -10,14 +10,13 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
-import java.util.Objects;
 
 @Service
 @Transactional
 @Component(value = ComponentConfig.Service.USER_RECORD)
 public class UserRecordService implements IService<UserRecord, Long> {
 
-    @Qualifier(ComponentConfig.DAO.USER_RECORD)
+    @Qualifier(ComponentConfig.DAO.USER_RECORD_V_1)
     @Autowired
     private Dao dao;
 

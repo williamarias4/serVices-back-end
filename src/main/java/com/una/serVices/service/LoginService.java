@@ -18,7 +18,7 @@ import java.util.List;
 @Component
 public class LoginService implements ILoginService {
 
-    @Qualifier(ComponentConfig.DAO.USER)
+    @Qualifier(ComponentConfig.DAO.USER_V_1)
     @Autowired
     private Dao dao;
 

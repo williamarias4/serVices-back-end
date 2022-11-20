@@ -10,14 +10,13 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
-import java.util.Objects;
 
 @Service
 @Transactional
 @Component(value = ComponentConfig.Service.JOB_HIRED_RECORD)
 public class JobHiredRecordService implements IService<JobHiredRecord, Long> {
 
-    @Qualifier(ComponentConfig.DAO.JOB_HIRED_RECORD)
+    @Qualifier(ComponentConfig.DAO.JOB_HIRED_RECORD_V_1)
     @Autowired
     private Dao dao;
 

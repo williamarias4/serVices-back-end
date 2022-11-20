@@ -20,11 +20,11 @@ import java.util.Objects;
 @Component(value = ComponentConfig.Service.USER)
 public class UserService implements IService<User, String> {
 
-    @Qualifier(ComponentConfig.DAO.USER)
+    @Qualifier(ComponentConfig.DAO.USER_V_1)
     @Autowired
     private Dao dao;
 
-    @Qualifier(ComponentConfig.DAO.ROLE)
+    @Qualifier(ComponentConfig.DAO.ROLE_V_1)
     @Autowired
     private GetDao getDao;
 

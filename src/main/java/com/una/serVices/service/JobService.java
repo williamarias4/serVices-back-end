@@ -18,11 +18,11 @@ import java.util.List;
 @Component(value = ComponentConfig.Service.JOB)
 public class JobService implements IService<Job, Long>, IGetAllByService<Job, String> {
 
-    @Qualifier(ComponentConfig.DAO.JOB)
+    @Qualifier(ComponentConfig.DAO.JOB_V_1)
     @Autowired
     private Dao dao;
 
-    @Qualifier(ComponentConfig.DAO.USER)
+    @Qualifier(ComponentConfig.DAO.USER_V_1)
     @Autowired
     private Dao dao2;
 

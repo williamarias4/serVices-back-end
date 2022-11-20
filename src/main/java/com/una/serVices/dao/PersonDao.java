@@ -13,7 +13,7 @@ import javax.persistence.criteria.Root;
 import java.util.List;
 
 @Repository
-@Component(value = ComponentConfig.DAO.PERSON)
+@Component(value = ComponentConfig.DAO.PERSON_V_1)
 public class PersonDao extends HibernateDao implements Dao<Person, Long> {
 
 

@@ -15,7 +15,7 @@ import javax.persistence.criteria.Root;
 import java.util.List;
 
 @Repository
-@Component(value = ComponentConfig.DAO.ROLE)
+@Component(value = ComponentConfig.DAO.ROLE_V_1)
 public class RoleDao extends HibernateDao implements GetDao<Role, Role.Type> {
 
     @Override

@@ -13,7 +13,7 @@ import javax.persistence.criteria.Root;
 import java.util.List;
 
 @Repository
-@Component(value = ComponentConfig.DAO.JOB)
+@Component(value = ComponentConfig.DAO.JOB_V_1)
 public class JobDao extends HibernateDao implements Dao<Job, Long> {
 
 

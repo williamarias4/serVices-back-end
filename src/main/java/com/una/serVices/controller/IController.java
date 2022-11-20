@@ -5,6 +5,7 @@ import com.una.serVices.dto.UserDto;
 
 import java.util.Optional;
 
+@Deprecated
 public interface IController<T,C> {
 
     T convertToDto(C c);

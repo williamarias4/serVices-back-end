@@ -15,7 +15,7 @@ import javax.persistence.criteria.Root;
 import java.util.List;
 
 @Repository
-@Component(value = ComponentConfig.DAO.USER)
+@Component(value = ComponentConfig.DAO.USER_V_1)
 public class UserDao extends HibernateDao implements Dao<User, String> {
 
 

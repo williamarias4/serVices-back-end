@@ -2,7 +2,6 @@ package com.una.serVices.dao;
 
 import com.google.common.base.Preconditions;
 import com.una.serVices.config.ComponentConfig;
-import com.una.serVices.data.User;
 import com.una.serVices.data.WorkExperience;
 import org.hibernate.Hibernate;
 import org.springframework.stereotype.Component;
@@ -16,7 +15,7 @@ import javax.persistence.criteria.Root;
 import java.util.List;
 
 @Repository
-@Component(value = ComponentConfig.DAO.WORK_EXPERIENCE)
+@Component(value = ComponentConfig.DAO.WORK_EXPERIENCE_V_1)
 public class WorkExperienceDao extends HibernateDao implements Dao<WorkExperience,Long>{
 
     @Override

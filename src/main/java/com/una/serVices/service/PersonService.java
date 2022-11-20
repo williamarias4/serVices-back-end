@@ -10,14 +10,13 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
-import java.util.Objects;
 
 @Service
 @Transactional
 @Component(value = ComponentConfig.Service.PERSON)
 public class PersonService implements IService<Person, Long> {
 
-    @Qualifier(ComponentConfig.DAO.PERSON)
+    @Qualifier(ComponentConfig.DAO.PERSON_V_1)
     @Autowired
     private Dao dao;
 
