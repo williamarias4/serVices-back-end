@@ -11,5 +11,5 @@ public interface LoginMapper {
 
     @Mapping(source = "loginDto.user_name", target = "user_name")
     @Mapping(source = "loginDto.password", target = "password")
-    User converToEntity(LoginDto loginDto);
+    User convertToEntity(LoginDto loginDto);
 }

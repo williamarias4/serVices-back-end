@@ -53,7 +53,8 @@ public class UserController implements IController<UserDto, User> {
 
     @GetMapping(APIRoute.Session.GET_BY_USER_NAME)
     public ResponseEntity<UserDto> getByUsername(@PathVariable String user_name) {
-        return ResponseEntity.ok(userMapper.convertToDto(service.get(user_name)));
+        User user = service.get(user_name);
+        return ResponseEntity.ok(userMapper.convertToDto(user));
     }
 
     @GetMapping(APIRoute.RestAPI.GET_ALL)
@@ -66,7 +67,7 @@ public class UserController implements IController<UserDto, User> {
     @ResponseBody
     public ResponseEntity<?> createAuthenticationToken(@RequestBody LoginDto authenticationRequest) throws Exception {
 
-        User user = convertToEntity(authenticationRequest);
+        User user = loginMapper.convertToEntity(authenticationRequest);
 
         authenticate(user.getUser_name(), user.getPassword());
 
@@ -80,15 +81,16 @@ public class UserController implements IController<UserDto, User> {
     @PostMapping(value = APIRoute.Session.REGISTER, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public UserDto save(@Valid @RequestBody UserDto userDto) {
-        User user = convertToEntity(userDto);
-        return convertToDto(service.save(user));
+        User user = userMapper.convertToEntity(userDto);
+        return userMapper.convertToDto(service.save(user));
     }
 
     @PostMapping(value = APIRoute.Session.LOG_IN, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public UserDto login(@Valid @RequestBody LoginDto loginDto) {
-        User user = convertToEntity(loginDto);
-        return convertToDto(login.login(user));
+    public ResponseEntity<UserDto> login(@Valid @RequestBody LoginDto loginDto) {
+        User user = loginMapper.convertToEntity(loginDto);
+        User loggedInUser = login.login(user);
+        return ResponseEntity.ok(userMapper.convertToDto(loggedInUser));
     }
 
     private void authenticate(String username, String password) throws Exception {
@@ -101,15 +103,18 @@ public class UserController implements IController<UserDto, User> {
         }
     }
 
+    @Deprecated
     public User convertToEntity(LoginDto loginDto) {
         return modelMapper.map(loginDto, User.class);
     }
 
+    @Deprecated
     @Override
     public UserDto convertToDto(User user) {
         return modelMapper.map(user, UserDto.class);
     }
 
+    @Deprecated
     @Override
     public User convertToEntity(UserDto userDto) {
         return modelMapper.map(userDto, User.class);
