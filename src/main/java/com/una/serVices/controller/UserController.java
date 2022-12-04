@@ -59,8 +59,8 @@ public class UserController {
 
     @GetMapping(APIRoute.RestAPI.GET_ALL)
     public List<UserDto> getAllUsers() {
-        return service.getAll().stream().map(user -> modelMapper
-                .map(user, UserDto.class)).collect(Collectors.toList());
+        return service.getAll().stream().map(user -> userMapper.convertToDto(user))
+                .collect(Collectors.toList());
     }
 
     @PostMapping(value = APIRoute.Session.AUTHENTICATE, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
