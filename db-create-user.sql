@@ -1,0 +1,3 @@
+CREATE USER 'root'@'192.168.65.1';
+
+GRANT ALL PRIVILEGES ON * . * TO 'root'@'192.168.65.1';
